@@ -1,0 +1,30 @@
+{
+  "name": "books-nuxtjs",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "Kedra, Krystian <krystian.kedra@atos.net>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "node-sass": "^4.9.3",
+    "nuxt": "^1.0.0",
+    "sass-loader": "^7.1.0",
+    "vue-resource": "^1.5.1",
+    "vue-star-rating": "^1.6.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0"
+  }
+}

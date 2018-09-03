@@ -27,13 +27,15 @@
     methods: {
       async addBook() {
         try {
+        if (this.title.length <= 0 || this.description.length <= 0 ) {
+          this.$router.push('alert')
+        } else {
           const newBook = {}
           this.$set(newBook, 'title', this.title)
           this.$set(newBook, 'description', this.description)
           await this.$store.dispatch('SEND_BOOK', newBook)
-          this.title = ''
-          this.description = ''
           this.$router.push('/books')
+        }
         } catch (e) {
           console.log(e);
         }

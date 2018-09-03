@@ -1,7 +1,7 @@
 <template>
   <div class="jumbotron">
-    <h3><strong>Title: </strong>{{book.title}}</h3>
-    <p><strong>Description: </strong>{{book.description}}</p>
+    <h3 class="text-center"><strong>Title: </strong>{{book.title}}</h3>
+    <p class="text-justify mt-3"><strong>Description: </strong>{{book.description}}</p>
     <star-rating v-if="rate" v-model="average" :increment="0.01" :border-width="3" :star-size="35" :read-only="true"></star-rating>
     <p v-else>No Rate yet!</p>
   </div>

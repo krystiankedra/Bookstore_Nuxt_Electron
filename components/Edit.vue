@@ -22,12 +22,15 @@
       }
     },
     components: {
-      'star-rating': StarRating
+      'star-rating': StarRating,
     },
     props: ['book', 'index'],
     methods: {
       async modifyBook(bookId, index) {
         try {
+          if (this.book.title.length <= 0 || this.book.description.length <= 0 ) {
+            this.$router.push('books/alertEdit')
+          } else {
           await this.$store.dispatch('MODIFY_BOOK', {
             bookId: bookId,
             index: index,
@@ -36,6 +39,7 @@
             rate: this.rate
           })
           this.$emit('changeShow')
+          }
         } catch (e) {
           console.log(e);
         }

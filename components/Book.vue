@@ -65,7 +65,7 @@
           this.$set(bookSelected, 'checked', this.checkBook)
           setTimeout(() => {
             this.$store.dispatch('SELECTED_BOOK', bookSelected)
-          }, 500)
+          }, 10)
         } else {
           this.checkBook = false
         }

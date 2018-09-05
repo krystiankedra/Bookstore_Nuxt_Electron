@@ -8,6 +8,7 @@
           <nuxt-link :to="`/books/${book.id}`">{{book.title}}</nuxt-link>
         </h5>
         <p><strong>Descripttion: </strong>{{book.description.slice(0,30) + '...'}}</p>
+        <p class="text-center"><img class="img-thumbnail" :src="bookPhoto"></p>
         <button class="btn btn-danger float-right" @click="deleteBook(book.id, index)">Delete</button>
         <button class="btn btn-success float-left" @click="showEdit">Edit</button>
       </div>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+  import bookPhoto from '~/assets/bookPhoto.png'
   import Edit from '~/components/Edit'
   export default {
     props: ['masterCheck'],
@@ -29,6 +31,7 @@
       return {
         showEditLi: false,
         checkBook: false,
+        bookPhoto,
       }
     },
     props: ['book', 'index'],

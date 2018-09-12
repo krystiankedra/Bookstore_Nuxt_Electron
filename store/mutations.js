@@ -8,9 +8,16 @@ export default {
       Vue.set(state, 'books', [...payload])
     },
     'DELETE_BOOK_LOCAL': (state, payload) => {
-      Vue.set(state , 'books', state.books.filter(item=> {
-        return item.id !== payload.bookId
-      }))
+      Vue.set(state, 'books', state.books.reduce((acc, currentValue) => {
+        if (currentValue.id != payload.bookId) {
+          acc.push({
+            id: currentValue.id,
+            title: currentValue.title,
+            description: currentValue.description
+          })
+        }
+        return acc
+      },[]))
     },
     'MODIFY_BOOK_LOCAL': (state, payload) => {
       Vue.set(state.books[payload.index], 'title', payload.title)

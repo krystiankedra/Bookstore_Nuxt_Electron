@@ -73,7 +73,7 @@
       },
       async deleteSelected() {
         if (this.$store.state.selectedBooks.length == 0) {
-          alert("Select something")
+          this.$router.push('/books/alertSelect')
           return false;
         } else {
           await this.$store.dispatch('DELETE_SELECTED');

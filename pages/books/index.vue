@@ -22,17 +22,13 @@
       </div>
     </div>
     <div class="row">
-      <Book class="col-md-4" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book"
-        :masterCheck="masterCheck"></Book>
+      <Book class="col-md-4" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book" :checkMaster="checkMaster"></Book>
     </div>
   </div>
 </template>
 
 
 <script>
-  import {
-    mapGetters
-  } from 'vuex'
   import Book from '~/components/Book'
   export default {
     data() {
@@ -52,7 +48,6 @@
       }
     },
     computed: {
-      ...mapGetters(['books', 'masterCheck']),
       filteredBooks() {
         return this.$store.getters.books.filter(element => {
           return (element.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ||
@@ -77,12 +72,14 @@
           return false;
         } else {
           await this.$store.dispatch('DELETE_SELECTED');
+          this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster 
         }
       },
       selectedMaster() {
-        this.$store.dispatch('SELECTED_MASTER', !this.checkMaster)
+      this.$store.dispatch('SELECTED_MASTER', !this.checkMaster)
       }
-    }
+    },
+
   }
 
 </script>

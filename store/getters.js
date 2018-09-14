@@ -5,7 +5,4 @@ export default {
     rates: state => {
       return state.rates
     },
-    masterCheck: state => {
-      return state.checkMaster
-    }
   }

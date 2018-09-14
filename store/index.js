@@ -9,7 +9,6 @@ import mutations from './mutations'
 
 Vue.use(VueResource);
 
-
 const createStore = () => {
   return new Vuex.Store({
     state: state,

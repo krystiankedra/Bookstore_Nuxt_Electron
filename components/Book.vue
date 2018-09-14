@@ -2,7 +2,6 @@
   <div>
     <div class="card mt-5">
       <div class="card-body">
-        {{checkMasterInput}}
         <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)">
         <h5 class="card-title"><strong>Title: </strong>
           <nuxt-link :to="`/books/${book.id}`">{{book.title}}</nuxt-link>
@@ -23,7 +22,6 @@
   import bookPhoto from '~/assets/bookPhoto.png'
   import Edit from '~/components/Edit'
   export default {
-    props: ['masterCheck'],
     components: {
       Edit,
     },
@@ -34,7 +32,7 @@
         bookPhoto,
       }
     },
-    props: ['book', 'index'],
+    props: ['book', 'index', 'checkMaster'],
     methods: {
       async deleteBook(bookId, index) {
         try {
@@ -50,7 +48,7 @@
         this.showEditLi = !this.showEditLi
       },
       selectedBook(bookId) {
-        this.checkBook = true
+        this.checkBook = !this.checkBook
         const bookSelected = {}
         this.$set(bookSelected, 'bookId', bookId)
         this.$set(bookSelected, 'index', this.index)
@@ -58,20 +56,9 @@
         this.$store.dispatch('SELECTED_BOOK', bookSelected)
       }
     },
-    computed: {
-      checkMasterInput() {
-        if (this.$store.getters.masterCheck) {
-          this.checkBook = true
-          let bookSelected = {}
-          this.$set(bookSelected, 'bookId', this.book.id)
-          this.$set(bookSelected, 'index', this.index)
-          this.$set(bookSelected, 'checked', this.checkBook)
-          setTimeout(() => {
-            this.$store.dispatch('SELECTED_BOOK', bookSelected)
-          }, 10)
-        } else {
-          this.checkBook = false
-        }
+    watch: {
+      checkMaster() {
+        this.checkMaster ? this.selectedBook(this.book.id) : this.checkBook = !this.checkBook
       }
     }
   }

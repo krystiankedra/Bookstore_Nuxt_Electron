@@ -18,7 +18,7 @@
         <button class="btn btn-warning" @click="deleteSelected">Delete Selected Book</button>
       </div>
       <div class="col-sm-3">
-        <input type="checkbox" v-model="checkMaster" @input="selectedMaster">
+        <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster">
       </div>
     </div>
     <div class="row">
@@ -75,9 +75,6 @@
           this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster 
         }
       },
-      selectedMaster() {
-      this.$store.dispatch('SELECTED_MASTER', !this.checkMaster)
-      }
     },
 
   }

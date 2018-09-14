@@ -58,7 +58,7 @@
     },
     watch: {
       checkMaster() {
-        this.checkMaster ? this.selectedBook(this.book.id) : this.checkBook = !this.checkBook
+        this.checkMaster ? this.selectedBook(this.book.id) : (this.checkBook = !this.checkBook, this.$store.state.selectedBooks = [])
       }
     }
   }

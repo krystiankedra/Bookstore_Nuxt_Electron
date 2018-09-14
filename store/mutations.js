@@ -60,8 +60,4 @@ export default {
       }
     }
   },
-  'SELECTED_MASTER_LOCAL': (state, payload) => {
-    console.log(payload)
-    Vue.set(state, 'checkMaster' , payload)
-  }
 }

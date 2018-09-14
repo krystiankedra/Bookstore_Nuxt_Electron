@@ -81,7 +81,4 @@ export default {
     'SELECTED_BOOK'({commit}, payload) {
         commit('SELECTED_BOOK_LOCAL', payload)
     },
-    'SELECTED_MASTER'({commit}, payload) {
-      commit('SELECTED_MASTER_LOCAL', payload)
-    }
   }

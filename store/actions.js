@@ -1,22 +1,14 @@
-import localBooks from '../assets/data/localBooks.json'
 import Vue from 'vue'
 
 export default {
     async 'GET_BOOKS'({commit}) {
       try {
         const books = []
-        await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
-        .then(response => {
-          return response.data.books
-        })
-        .then(data => {
-          for(let i in localBooks.books) {
-            books.unshift(localBooks.books[i])
-          }
-          for(let i in data) {
-            books.unshift(data[i])
-          }
-        })
+        let response = await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
+        let responseData = response.data.books
+        for (let i in responseData) {
+          books.push(responseData[i])
+        }
         commit('SET_BOOKS', books)
       } catch (e) {
         console.log(e)
@@ -81,4 +73,15 @@ export default {
     'SELECTED_BOOK'({commit}, payload) {
         commit('SELECTED_BOOK_LOCAL', payload)
     },
+    async 'GET_JSON'() {
+      try {
+        let response = await Vue.http.get('/localBooks.json')
+        let responseData = response.body.books
+        for (let i in responseData) {
+          await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', responseData[i] , {emulateJSON: true})
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }

@@ -15,10 +15,13 @@
         </button>
       </div>
       <div class="col-sm-3">
-        <button class="btn btn-warning" @click="deleteSelected">Delete Selected Book</button>
+        <button class="btn btn-danger" @click="deleteSelected">Delete Selected Book</button>
       </div>
-      <div class="col-sm-3">
+      <div class="col-sm-1">
         <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster">
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" @click="addJson">Import From File</button>
       </div>
     </div>
     <div class="row">
@@ -75,8 +78,11 @@
           this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster 
         }
       },
+      async addJson() {
+        await this.$store.dispatch('GET_JSON')
+        await this.$store.dispatch('GET_BOOKS')
+      }
     },
-
   }
 
 </script>

@@ -6,7 +6,7 @@
     </div>
     <div class="form-group row">
       <label class="col-form-label">Description:</label>
-      <textarea class="form-control from-group" type="text" v-model="book.description" rows="10"></textarea>
+      <textarea class="form-control from-group text-justify" type="text" v-model="book.description" rows="10"></textarea>
     </div>
     <star-rating v-model="rate" :increment="0.5" :border-width="3" :star-size="35" class="custom-text"></star-rating>
     <button @click="modifyBook(book.id, index)" class="btn btn-primary float-right">Save</button>

@@ -3,7 +3,7 @@
     <div class="row">
       <input type="text" placeholder="Type search" class="form-control col-sm-6 offset-sm-3 mt-5" v-model="search">
     </div>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-sm-3">
         <button class="btn btn-secondary" @click="sortTitle(sortByTitle=!sortByTitle)">Sort Title
           <i :class="[sortByTitle ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>

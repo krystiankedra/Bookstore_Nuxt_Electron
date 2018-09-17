@@ -25,7 +25,7 @@ export default {
     async 'DELETE_BOOK'({commit}, payload) {
       try {
         await Vue.http.delete('http://bootcamp.opole.pl/books/delete-book/' + payload.bookId + '/87f4')
-        commit('DELETE_BOOK_LOCAL', payload)
+        commit('DELETE_BOOK', payload)
       } catch (e) {
         console.log(e)
       }
@@ -37,7 +37,7 @@ export default {
         const response = await Vue.http.get('http://bootcamp.opole.pl/books/my-rates/87f4')
         const rates = response.body.rates
         commit('SET_RATES', rates)
-        commit('MODIFY_BOOK_LOCAL', payload)
+        commit('MODIFY_BOOK', payload)
       } catch (e) {
         console.log(e)
       }
@@ -61,7 +61,7 @@ export default {
       try {
         for (let i in this.state.selectedBooks) {
           await Vue.http.delete('http://bootcamp.opole.pl/books/delete-book/' + this.state.selectedBooks[i].bookId + '/87f4')
-          commit('DELETE_BOOK_LOCAL', this.state.selectedBooks[i])
+          commit('DELETE_BOOK', this.state.selectedBooks[i])
         }
         const response = await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
         const books = response.data.books
@@ -71,7 +71,7 @@ export default {
       }
     },
     'SELECTED_BOOK'({commit}, payload) {
-        commit('SELECTED_BOOK_LOCAL', payload)
+        commit('SELECTED_BOOK', payload)
     },
     async 'GET_JSON'() {
       try {

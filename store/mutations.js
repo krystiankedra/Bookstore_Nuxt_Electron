@@ -7,7 +7,7 @@ export default {
   'ADD_BOOK': (state, payload) => {
     Vue.set(state, 'books', [...payload])
   },
-  'DELETE_BOOK_LOCAL': (state, payload) => {
+  'DELETE_BOOK': (state, payload) => {
     Vue.set(state, 'books', state.books.reduce((acc, currentValue) => {
       if (currentValue.id != payload.bookId) {
         acc.push({
@@ -19,7 +19,7 @@ export default {
       return acc
     }, []))
   },
-  'MODIFY_BOOK_LOCAL': (state, payload) => {
+  'MODIFY_BOOK': (state, payload) => {
     Vue.set(state.books[payload.index], 'title', payload.title)
     Vue.set(state.books[payload.index], 'description', payload.description)
   },
@@ -44,7 +44,7 @@ export default {
   'SET_RATES': (state, payload) => {
     Vue.set(state, 'rates', payload)
   },
-  'SELECTED_BOOK_LOCAL': (state, payload) => {
+  'SELECTED_BOOK': (state, payload) => {
     let found = state.books.some(item => {
       item.id == payload.bookId
     })

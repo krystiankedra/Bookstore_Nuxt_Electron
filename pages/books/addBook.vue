@@ -10,8 +10,8 @@
       <label for="" class="col-sm-2 col-form-label">New Description</label>
       <input type="text" class="col-sm-8 col-sm-offset-2 form-control" placeholder="Type new Description..."  v-model="description">
     </div>
-    <div class="form-group row">
-      <button class="btn btn-success col-sm-1 offset sm-11" @click="addBook">Add Book</button>
+    <div class="row justify-content-center">
+      <button class="btn btn-success" @click="addBook">Add Book</button>
     </div>
   </div>
 </template>

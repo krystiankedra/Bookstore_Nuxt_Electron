@@ -45,10 +45,7 @@ export default {
     Vue.set(state, 'rates', payload)
   },
   'SELECTED_BOOK': (state, payload) => {
-    let found = state.books.some(item => {
-      item.id == payload.bookId
-    })
-    if (!found && payload.checked) {
+    if (payload.checked) {
       state.selectedBooks.push(payload)
     } else {
       if (state.selectedBooks.length > 1) {

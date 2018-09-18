@@ -13,6 +13,14 @@
     <div class="row justify-content-center">
       <button class="btn btn-success" @click="addBook">Add Book</button>
     </div>
+    <div class="mt-5">
+        <div class="alert alert-success col-md-3 float-left text-center" v-if="title.length > 0">
+          <span>Title is correct !</span>
+        </div>
+        <div class="alert alert-success col-md-3 float-right text-center" v-if="description.length > 0">
+          <span>Description is correct !</span>
+        </div>
+    </div>
   </div>
 </template>
 

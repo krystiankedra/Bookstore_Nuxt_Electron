@@ -27,7 +27,7 @@
       rate() {
         return this.$store.getters.rates.find(book => {
           if (book.book == this.$route.params.id) {
-            return this.$set(this, 'average', Number((book.sum / book.rates).toFixed(2)))
+            return this.average = Number((book.sum / book.rates).toFixed(2))
           }
         })
       }

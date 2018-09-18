@@ -2,12 +2,12 @@
   <div>
     <div class="card mt-5">
       <div class="card-body">
-        <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)">
-        <h5 class="card-title"><strong>Title: </strong>
-          <nuxt-link :to="`/books/${book.id}`">{{book.title}}</nuxt-link>
-        </h5>
-        <p><strong>Descripttion: </strong>{{book.description.slice(0,30) + '...'}}</p>
-        <p class="text-center"><img class="img-thumbnail" :src="bookPhoto"></p>
+        <div class="text-center">
+        <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)" class="font-size-checkbox">
+        </div>
+        <h5 class="card-title text-center"><strong>{{book.title}}</strong></h5>
+        <p class="text-justify">{{book.description.slice(0,70) + '...'}}</p>
+        <nuxt-link :to="`/books/${book.id}`"><p class="text-center"><img class="img-thumbnail" :src="bookPhoto"></p></nuxt-link>
         <button class="btn btn-danger float-right" @click="deleteBook(book.id, index)">Delete</button>
         <button class="btn btn-success float-left" @click="showEdit">Edit</button>
       </div>
@@ -64,5 +64,9 @@
   }
 </script>
 
-<style>
+<style scoped>
+.font-size-checkbox {
+  width:20px;
+  height: 20px;
+}
 </style>

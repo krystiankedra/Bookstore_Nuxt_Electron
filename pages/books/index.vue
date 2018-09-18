@@ -18,7 +18,7 @@
         <button class="btn btn-danger" @click="deleteSelected">Delete Selected Book</button>
       </div>
       <div class="col-sm-1">
-        <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster">
+        <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster" class="font-size-checkbox">
       </div>
       <div class="col-sm-2">
         <button class="btn btn-primary" @click="addJson">Import From File</button>
@@ -86,3 +86,10 @@
   }
 
 </script>
+
+<style scoped>
+.font-size-checkbox {
+  width:25px;
+  height: 25px;
+}
+</style>

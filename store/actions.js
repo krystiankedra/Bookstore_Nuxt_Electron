@@ -7,7 +7,7 @@ export default {
         let response = await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
         let responseData = response.data.books
         for (let i in responseData) {
-          books.push(responseData[i])
+          books.unshift(responseData[i])
         }
         commit('SET_BOOKS', books)
       } catch (e) {

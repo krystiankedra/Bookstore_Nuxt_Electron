@@ -8,7 +8,7 @@
         <h5 class="card-title text-center"><strong>{{book.title}}</strong></h5>
         <p class="text-justify">{{book.description.slice(0,70) + '...'}}</p>
         <nuxt-link :to="`/books/${book.id}`">
-          <p class="text-center"><img class="img-thumbnail" :src="bookPhoto" alt="Click here to more info about book"></p>
+          <p class="text-center"><img class="img-fluid" :src="bookPhoto" alt="Click here to more info about book"></p>
         </nuxt-link>
         <star-rating v-if="rate" v-model="average" :increment="0.01" :border-width="3" :star-size="25" :read-only="true"></star-rating>
         <button class="btn btn-danger float-right" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
@@ -22,9 +22,9 @@
               <span class="close-button" @click="showEditBook = !showEditBook"><i class="fas fa-times"></i></span>
               <h3>Modify Book</h3>
               <label class="label-margin-top"><strong>Title:</strong></label>
-              <textarea class="form-control text-justify" :placeholder="book.title" v-model="book.title" rows="2"></textarea>
+              <textarea class="form-control text-justify" v-model="book.title" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
-              <textarea class="form-control text-justify" :placeholder="book.description" v-model="book.description"
+              <textarea class="form-control text-justify" v-model="book.description"
                 rows="10" cols="5"></textarea>
               <label class="label-margin-top"><strong>New Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
@@ -39,7 +39,7 @@
 
 <script>
   import StarRating from 'vue-star-rating'
-  import bookPhoto from '~/assets/bookPhoto.png'
+  import bookPhoto from '~/assets/book.png'
   export default {
     components: {
       'star-rating': StarRating
@@ -114,10 +114,11 @@
 <style scoped>
   img {
     transition: .5s ease-in-out ;
+    transform: scale(0.7);
   }
 
   img:hover{
-    transform: scale(1.2);
+    transform: scale(1);
   }
 
   .font-size-checkbox {
@@ -188,4 +189,8 @@
     margin-bottom: 0;
   }
 
+  .card {
+    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
+    background-color: rgba(126,214,223, 0.4);
+  }
 </style>

@@ -10,10 +10,10 @@
 <style style lang="scss">
   @import '../node_modules/bootstrap/scss/bootstrap.scss';
   .slide-enter-active {
-    animation: slide-in 2s ease-out forwards;
+    animation: slide-in 1s ease-out forwards;
   }
   .slide-leave-active {
-  animation: slide-out 2s ease-out forwards;
+  animation: slide-out 1s ease-out forwards;
   }
   @keyframes slide-in {
     from {

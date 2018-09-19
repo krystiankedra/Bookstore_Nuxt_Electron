@@ -5,14 +5,3 @@
     <nuxt-link to="/books/addbook" class="nav-link" active-class="active" exact>Add Book</nuxt-link>
   </ul>
 </template>
-
-<script>
-  export default {
-
-  }
-
-</script>
-
-<style>
-
-</style>

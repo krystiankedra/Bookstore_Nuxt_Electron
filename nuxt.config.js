@@ -10,7 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      
+      {rel:'stylesheet', href:"https://use.fontawesome.com/releases/v5.3.1/css/all.css"} 
     ]
   },
   /*

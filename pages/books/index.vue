@@ -1,7 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <input type="text" placeholder="Type search" class="form-control col-sm-6 offset-sm-3 mt-5" v-model="search">
+      <div class="input-group mb-3 mt-5 col-sm-6 offset-sm-3">
+        <input type="text" placeholder="Type search" class="form-control" v-model="search">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
     </div>
     <div class="row mt-5">
       <div class="col-sm-3">
@@ -15,13 +20,13 @@
         </button>
       </div>
       <div class="col-sm-3">
-        <button class="btn btn-danger" @click="deleteSelected">Delete Selected Book</button>
+        <button class="btn btn-danger" @click="deleteSelected">Delete Selected Book <i class="fas fa-trash-alt"></i></button>
       </div>
       <div class="col-sm-1">
         <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster" class="font-size-checkbox">
       </div>
       <div class="col-sm-2">
-        <button class="btn btn-primary" @click="addJson">Import From File</button>
+        <button class="btn btn-primary" @click="addJson">Import From File <i class="fas fa-file"></i></button>
       </div>
     </div>
     <div class="row">
@@ -74,7 +79,7 @@
           return false;
         } else {
           await this.$store.dispatch('DELETE_SELECTED');
-          this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster 
+          this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster
         }
       },
       async addJson() {
@@ -87,8 +92,8 @@
 </script>
 
 <style scoped>
-.font-size-checkbox {
-  width:25px;
-  height: 25px;
-}
+  .font-size-checkbox {
+    width: 25px;
+    height: 25px;
+  }
 </style>

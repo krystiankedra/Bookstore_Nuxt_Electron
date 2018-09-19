@@ -1,24 +1,22 @@
 <template>
   <div class="container mt-5">
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">
-        New Title
-      </label>
+      <label class="col-sm-2 col-form-label"><strong>New Title</strong></label>
       <input type="text" class="col-sm-8 col-sm-offset-2 form-control" placeholder="Type new Title..."  v-model="title">
     </div>
     <div class="form-group row">
-      <label for="" class="col-sm-2 col-form-label">New Description</label>
+      <label for="" class="col-sm-2 col-form-label"><strong>New Description</strong></label>
       <input type="text" class="col-sm-8 col-sm-offset-2 form-control" placeholder="Type new Description..."  v-model="description">
     </div>
     <div class="row justify-content-center">
-      <button class="btn btn-success" @click="addBook">Add Book</button>
+      <button class="btn btn-success" @click="addBook">Add Book <i class="fas fa-plus-circle"></i></button>
     </div>
     <div class="mt-5">
         <div class="alert alert-success col-md-3 float-left text-center" v-if="title.length > 0">
-          <span>Title is correct !</span>
+          <span>Title is correct <i class="fas fa-thumbs-up"></i></span>
         </div>
         <div class="alert alert-success col-md-3 float-right text-center" v-if="description.length > 0">
-          <span>Description is correct !</span>
+          <span>Description is correct <i class="fas fa-thumbs-up"></i></span>
         </div>
     </div>
   </div>
@@ -52,7 +50,3 @@
   }
 
 </script>
-
-<style>
-
-</style>

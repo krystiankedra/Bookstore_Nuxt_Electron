@@ -35,7 +35,6 @@
   </div>
 </template>
 
-
 <script>
   import Book from '~/components/Book'
   export default {
@@ -88,7 +87,6 @@
       }
     },
   }
-
 </script>
 
 <style scoped>

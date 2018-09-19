@@ -57,7 +57,6 @@
             element.description.toLowerCase().indexOf(this.search.toLowerCase()) > -1);
         });
       },
-
     },
     components: {
       Book

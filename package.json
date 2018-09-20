@@ -4,6 +4,7 @@
   "description": "Nuxt.js project",
   "author": "Kedra, Krystian <krystian.kedra@atos.net>",
   "private": true,
+  "main" : "main.js",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

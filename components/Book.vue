@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card mt-5">
+    <div class="card mt-5 flex-fill">
       <div class="card-body">
         <div class="text-center">
           <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)" class="font-size-checkbox">

@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="row">
-      <Book class="col-md-4" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book" :checkMaster="checkMaster"></Book>
+      <Book class="col-md-4 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book" :checkMaster="checkMaster"></Book>
     </div>
   </div>
 </template>

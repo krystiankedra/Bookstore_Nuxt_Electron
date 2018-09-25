@@ -15,6 +15,7 @@ export default {
       }
     },
     async 'SEND_BOOK'({commit}, payload) {
+      console.log(payload)
       try {
         await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', payload, {emulateJSON: true})
         commit('ADD_BOOK', payload)
@@ -32,7 +33,7 @@ export default {
     },
     async 'MODIFY_BOOK'({commit}, payload) {
       try {
-        await Vue.http.post('http://bootcamp.opole.pl/books/edit-book/' + payload.bookId + '/87f4', {title: payload.title, description: payload.description}, {emulateJSON: true})
+        await Vue.http.post('http://bootcamp.opole.pl/books/edit-book/' + payload.bookId + '/87f4', {title: payload.title, description: payload.description, category: payload.category, subcategory: payload.subcategory}, {emulateJSON: true})
         await Vue.http.post('http://bootcamp.opole.pl/books/rate/87f4', {id: payload.bookId, rate: payload.rate}, {emulateJSON: true})
         const response = await Vue.http.get('http://bootcamp.opole.pl/books/my-rates/87f4')
         const rates = response.body.rates
@@ -80,6 +81,32 @@ export default {
         for (let i in responseData) {
           await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', responseData[i] , {emulateJSON: true})
         }
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async 'GET_CATEGORIES'({commit}) {
+      try {
+        const categories = []
+        let response = await Vue.http.get('http://bootcamp.opole.pl/categories')
+        let responseData = response.data.categories
+        for (let i in responseData) {
+          categories.unshift(responseData[i])
+        }
+        commit('SET_CATEGORIES', categories)
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async 'GET_SUBCATEGORIES'({commit}, payload) {
+      try {
+        const subcategories = []
+        let response = await Vue.http.post('http://bootcamp.opole.pl/subcategories', {id: payload}, {emulateJSON: true})
+        let responseData = response.body.sub_categories
+        for (let i in responseData) {
+          subcategories.unshift(responseData[i])
+        }
+        commit('SET_SUBCATEGORIES', subcategories)
       } catch (e) {
         console.log(e)
       }

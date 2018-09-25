@@ -5,4 +5,10 @@ export default {
     rates: state => {
       return state.rates
     },
+    categories: state => {
+      return state.categories
+    },
+    subcategories: state => {
+      return state.subcategories
+    }
   }

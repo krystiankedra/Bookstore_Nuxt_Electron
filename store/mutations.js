@@ -22,6 +22,7 @@ export default {
   'MODIFY_BOOK': (state, payload) => {
     Vue.set(state.books[payload.index], 'title', payload.title)
     Vue.set(state.books[payload.index], 'description', payload.description)
+    Vue.set(state.books[payload.index], 'category', payload.category)
   },
   'SORTED_TITLE': (state, payload) => {
     if (payload) {
@@ -57,4 +58,10 @@ export default {
       }
     }
   },
+  'SET_CATEGORIES' : (state, payload) => {
+    Vue.set(state, 'categories', payload)
+  },
+  'SET_SUBCATEGORIES': (state, payload) => {
+    Vue.set(state, 'subcategories', payload)
+  }
 }

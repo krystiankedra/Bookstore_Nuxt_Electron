@@ -38,20 +38,21 @@
 <script>
   import Book from '~/components/Book'
   export default {
+    async mounted() {
+      try {
+        await this.$store.dispatch('GET_BOOKS')
+        await this.$store.dispatch('GET_RATES')
+        await this.$store.dispatch('GET_CATEGORIES')
+      } catch (e) {
+        console.log(e);
+      }
+    },
     data() {
       return {
         search: '',
         sortByTitle: false,
         sortByDesc: false,
         checkMaster: false,
-      }
-    },
-    async mounted() {
-      try {
-        await this.$store.dispatch('GET_BOOKS')
-        await this.$store.dispatch('GET_RATES')
-      } catch (e) {
-        console.log(e);
       }
     },
     computed: {

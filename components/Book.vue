@@ -6,7 +6,8 @@
           <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)" class="font-size-checkbox">
         </div>
         <h5 class="card-title text-center"><strong>{{book.title}}</strong></h5>
-        <p class="text-justify">{{book.description.slice(0,70) + '...'}}</p>
+        <p class="text-justify"><strong>Description: </strong>{{book.description.slice(0,70) + '...'}}</p>
+        <p><strong>Category: </strong>{{categoryValue ? category : 'No Category yet!'}}</p>
         <nuxt-link :to="`/books/${book.id}`">
           <p class="text-center"><img class="img-fluid" :src="bookPhoto" alt="Click here to more info about book"></p>
         </nuxt-link>
@@ -25,10 +26,24 @@
               <textarea class="form-control text-justify" v-model="book.title" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
               <textarea class="form-control text-justify" v-model="book.description"
-                rows="10" cols="5"></textarea>
+                rows="4" cols="5"></textarea>
+                <button class="btn btn-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
               <label class="label-margin-top"><strong>New Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
-              <button class="btn btn-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
+               <div class="form-group row  mt-3">
+                <label for="category" class="col-sm-2 col-form-label"><strong>New Category</strong></label>
+              <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
+                <option disabled value="">Please select category</option>
+                <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
+              </select>
+              </div>
+              <div class="form-group row" v-if="category">
+                <label for="subcategory" class="col-sm-2 col-form-label"><strong>New Subcategory</strong></label>
+              <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
+                <option disabled value="">Please select subcategory</option>
+                <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
+              </select>
+              </div>
             </div>
           </div>
         </div>
@@ -51,6 +66,8 @@
         bookPhoto,
         average: null,
         newRate: null,
+        category: '',
+        subcategory: ''
       }
     },
     computed: {
@@ -60,6 +77,19 @@
             return this.$set(this, 'average', Number((book.sum / book.rates).toFixed(2)))
           }
         })
+      },
+      categoryValue() {
+        return this.$store.getters.categories.find(category => {
+          if (category.id == this.book.category) {
+            return this.$set(this, 'category', category.name)
+          }
+        })
+      },
+      categories() {
+        return this.$store.getters.categories
+      },
+      subcategories() {
+        return this.$store.getters.subcategories
       }
     },
     props: ['book', 'index', 'checkMaster'],
@@ -92,7 +122,9 @@
               index: index,
               title: this.book.title,
               description: this.book.description,
-              rate: this.newRate
+              rate: this.newRate,
+              category: this.category,
+              subcategory: this.subcategory
             })
             this.showEditBook = !this.showEditBook
             this.newRate = null
@@ -100,6 +132,9 @@
         } catch (e) {
           console.log(e);
         }
+      },
+      async getSubcategories(value) {
+        await this.$store.dispatch('GET_SUBCATEGORIES', value)
       }
     },
     watch: {

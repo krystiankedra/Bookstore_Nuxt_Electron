@@ -2,23 +2,33 @@
   "books": [
     {
       "title": "You Don't Know JS: Up & Going First",
-      "description": "It’s easy to learn parts of JavaScript, but much harder to learn it completely or even sufficiently whether you’re new to the language or have used it for years. You’ll get a more complete understanding of JavaScript. It’s easy to learn parts of JavaScript, but much harder to learn it completely or even sufficiently whether you’re new to the language or have used it for years. You’ll get a more complete understanding of JavaScript."
+      "description": "It’s easy to learn parts of JavaScript, but much harder to learn it completely or even sufficiently whether you’re new to the language or have used it for years. You’ll get a more complete understanding of JavaScript. It’s easy to learn parts of JavaScript, but much harder to learn it completely or even sufficiently whether you’re new to the language or have used it for years. You’ll get a more complete understanding of JavaScript.",
+      "category": "1",
+      "subcategory": "20"
     },
     {
       "title": "You Don't Know JS: Scope and Closures",
-      "description": "This is important in JavaScript language. Here's an explanation of scopes and closures to help you understand what they are. In JavaScript defines what variables you have access to. This is important in JavaScript language. Here's an explanation of scopes and closures to help you understand what they are. In JavaScript defines what variables you have access to."
+      "description": "This is important in JavaScript language. Here's an explanation of scopes and closures to help you understand what they are. In JavaScript defines what variables you have access to. This is important in JavaScript language. Here's an explanation of scopes and closures to help you understand what they are. In JavaScript defines what variables you have access to.",
+      "category": "1",
+      "subcategory": "20"
     },
     {
       "title": "You Don't Know JS: This & Object Proto",
-      "description": "No matter how much experience you have with JavaScript, odds are you don't fully understand the language. This concise, in depth guide takes you inside JavaScript's this structure and object prototypes. No matter how much experience you have with JavaScript, odds are you don't fully understand the language. This concise, in depth guide takes you inside JavaScript's this structure and object prototypes."
+      "description": "No matter how much experience you have with JavaScript, odds are you don't fully understand the language. This concise, in depth guide takes you inside JavaScript's this structure and object prototypes. No matter how much experience you have with JavaScript, odds are you don't fully understand the language. This concise, in depth guide takes you inside JavaScript's this structure and object prototypes.",
+      "category": "1",
+      "subcategory": "20"
     },
     {
       "title": "You Don't Know JS: Types & Grammar",
-      "description": "Get acquainted with JavaScript’s seven types: null, undefined, boolean, number, string, object, and symbol. Understand why JavaSript’s unique array, string, and number characteristics may delight or confound you. Get acquainted with JavaScript’s seven types: null, undefined, boolean, number, string, object, and symbol. Understand why JavaSript’s unique array, string, and number characteristics may delight or confound you."
+      "description": "Get acquainted with JavaScript’s seven types: null, undefined, boolean, number, string, object, and symbol. Understand why JavaSript’s unique array, string, and number characteristics may delight or confound you. Get acquainted with JavaScript’s seven types: null, undefined, boolean, number, string, object, and symbol. Understand why JavaSript’s unique array, string, and number characteristics may delight or confound you.",
+      "category": "1",
+      "subcategory": "20"
     },
     {
       "title": "You Don't Know JS: Async & Performance",
-      "description": "Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge. Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge."
+      "description": "Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge. Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge.",
+      "category": "1",
+      "subcategory": "20"
     }
   ]
 }

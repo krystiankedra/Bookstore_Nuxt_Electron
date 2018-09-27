@@ -3,5 +3,5 @@ export default {
     rates: [],
     selectedBooks: [],
     categories: [],
-    subcategories: []
+    subcategories: [],
   }

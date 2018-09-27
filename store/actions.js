@@ -15,7 +15,6 @@ export default {
       }
     },
     async 'SEND_BOOK'({commit}, payload) {
-      console.log(payload)
       try {
         await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', payload, {emulateJSON: true})
         commit('ADD_BOOK', payload)

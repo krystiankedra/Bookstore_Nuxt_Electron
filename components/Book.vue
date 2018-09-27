@@ -25,24 +25,24 @@
               <label class="label-margin-top"><strong>Title:</strong></label>
               <textarea class="form-control text-justify" v-model="book.title" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
-              <textarea class="form-control text-justify" v-model="book.description"
-                rows="4" cols="5"></textarea>
-                <button class="btn btn-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
+              <textarea class="form-control text-justify" v-model="book.description" rows="4" cols="5"></textarea>
+              <button class="btn btn-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
               <label class="label-margin-top"><strong>New Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
-               <div class="form-group row  mt-3">
+              <div class="form-group row  mt-3">
                 <label for="category" class="col-sm-2 col-form-label"><strong>New Category</strong></label>
-              <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
-                <option disabled value="">Please select category</option>
-                <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
-              </select>
+                <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
+                  <option disabled value="">Please select category</option>
+                  <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
+                  <option value="0">Clear category</option>
+                </select>
               </div>
-              <div class="form-group row" v-if="category">
+              <div class="form-group row">
                 <label for="subcategory" class="col-sm-2 col-form-label"><strong>New Subcategory</strong></label>
-              <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
-                <option disabled value="">Please select subcategory</option>
-                <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
-              </select>
+                <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
+                  <option disabled value="">Please select subcategory</option>
+                  <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
+                </select>
               </div>
             </div>
           </div>
@@ -143,15 +143,16 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
   img {
-    transition: .5s ease-in-out ;
+    transition: .5s ease-in-out;
     transform: scale(0.7);
   }
 
-  img:hover{
+  img:hover {
     transform: scale(1);
   }
 
@@ -224,7 +225,7 @@
   }
 
   .card {
-    box-shadow: 10px 10px 30px 0px rgba(0,0,0,0.75);
-    background-color: rgba(126,214,223, 0.4);
+    box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
+    background-color: rgba(126, 214, 223, 0.4);
   }
 </style>

@@ -10,5 +10,5 @@ export default {
     },
     subcategories: state => {
       return state.subcategories
-    }
+    },
   }

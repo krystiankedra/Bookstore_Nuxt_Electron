@@ -63,5 +63,5 @@ export default {
   },
   'SET_SUBCATEGORIES': (state, payload) => {
     Vue.set(state, 'subcategories', payload)
-  }
+  },
 }

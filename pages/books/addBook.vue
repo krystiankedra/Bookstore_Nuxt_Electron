@@ -10,17 +10,17 @@
     </div>
     <div class="form-group row">
       <label for="category" class="col-sm-2 col-form-label"><strong>New Category</strong></label>
-    <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
-      <option disabled value="">Please select category</option>
-      <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
-    </select>
+      <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
+        <option disabled value="">Please select category</option>
+        <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
+      </select>
     </div>
     <div class="form-group row" v-if="category">
       <label for="subcategory" class="col-sm-2 col-form-label"><strong>New Subcategory</strong></label>
-    <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
-      <option disabled value="">Please select subcategory</option>
-      <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
-    </select>
+      <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
+        <option disabled value="">Please select subcategory</option>
+        <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
+      </select>
     </div>
     <div class="row justify-content-center">
       <button class="btn btn-success" @click="addBook">Add Book <i class="fas fa-plus-circle"></i></button>
@@ -50,23 +50,23 @@
         title: '',
         description: '',
         category: '',
-        subcategory:'',
+        subcategory: '',
       }
     },
     methods: {
       async addBook() {
         try {
-        if (this.title.length <= 0 || this.description.length <= 0) {
-          this.$router.push('alert')
-        } else {
-          const newBook = {}
-          this.$set(newBook, 'title', this.title)
-          this.$set(newBook, 'description', this.description)
-          this.$set(newBook, 'category', this.category)
-          this.$set(newBook, 'subcategory', this.subcategory)
-          await this.$store.dispatch('SEND_BOOK', newBook)
-          this.$router.push('/books')
-        }
+          if (this.title.length <= 0 || this.description.length <= 0) {
+            this.$router.push('alert')
+          } else {
+            const newBook = {}
+            this.$set(newBook, 'title', this.title)
+            this.$set(newBook, 'description', this.description)
+            this.$set(newBook, 'category', this.category)
+            this.$set(newBook, 'subcategory', this.subcategory)
+            await this.$store.dispatch('SEND_BOOK', newBook)
+            this.$router.push('/books')
+          }
         } catch (e) {
           console.log(e);
         }
@@ -84,4 +84,5 @@
       }
     }
   }
+
 </script>

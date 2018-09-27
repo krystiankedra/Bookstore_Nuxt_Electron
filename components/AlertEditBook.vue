@@ -2,7 +2,7 @@
 <div class="container">
   <div class="page-header">
     <h1>Error
-      <small>When editing a book, complete the new Title, Description and Rate.</small>
+      <small>When editing a book, complete the new Title, Description</small>
     </h1>
     <button class="btn btn-danger" @click="navigationToBooks">Try again</button>
   </div>

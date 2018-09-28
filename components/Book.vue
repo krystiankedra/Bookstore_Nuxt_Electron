@@ -42,6 +42,7 @@
                 <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
                   <option disabled value="">Please select subcategory</option>
                   <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
+                  <option value="0">Clear subcategory</option>
                 </select>
               </div>
             </div>

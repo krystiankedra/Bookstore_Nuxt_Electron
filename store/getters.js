@@ -11,4 +11,13 @@ export default {
     subcategories: state => {
       return state.subcategories
     },
+    booksOfCategory: state => {
+      return state.booksOfCategory
+    },
+    valueOfCategory: state => {
+      return state.valueOfCategory
+    },
+    booksOfSubcategory: state => {
+      return state.booksOfSubcategory
+    }
   }

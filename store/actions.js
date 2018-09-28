@@ -109,5 +109,45 @@ export default {
       } catch (e) {
         console.log(e)
       }
+    },
+    async 'GET_BOOKS_OF_CATEGORY'({commit}, payload) {
+      try {
+        await Vue.http.get('http://bootcamp.opole.pl/books/my-books/category/' + payload + '/87f4')
+        .then(response => {
+          const booksOfCategory = []
+          for (let i in response.body.books) {
+            booksOfCategory.push(response.body.books[i])
+          }
+          commit('SET_BOOKS_OF_CATEGORY', booksOfCategory)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async 'GET_CATEGORY_VALUE'({commit}, payload) {
+      try {
+        const categories = []
+        let response = await Vue.http.get('http://bootcamp.opole.pl/categories')
+        let responseData = response.data.categories
+        for (let i in responseData) {
+          categories.unshift(responseData[i])
+        }
+        categories.find(item => {
+          if (item.id == payload.id) {
+            commit('SET_CATEGORY_VALUE', item)
+        }})
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async 'GET_BOOKS_OF_SUBCATEGORY'({commit}, payload) {
+      await Vue.http.get('http://bootcamp.opole.pl/books/my-books/subcategory/' + payload +'/87f4')
+      .then(response => {
+        const books = []
+        for (let i in response.body.books) {
+          books.push(response.body.books[i])
+        }
+        commit('SET_BOOKS_OF_SUBCATEGORY', books)
+      })
     }
   }

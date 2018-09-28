@@ -4,4 +4,7 @@ export default {
     selectedBooks: [],
     categories: [],
     subcategories: [],
+    booksOfCategory: [],
+    valueOfCategory:[],
+    booksOfSubcategory:[]
   }

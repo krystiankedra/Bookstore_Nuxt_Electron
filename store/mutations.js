@@ -64,4 +64,13 @@ export default {
   'SET_SUBCATEGORIES': (state, payload) => {
     Vue.set(state, 'subcategories', payload)
   },
+  'SET_BOOKS_OF_CATEGORY': (state, payload) => {
+    Vue.set(state, 'booksOfCategory', payload)
+  },
+  'SET_CATEGORY_VALUE': (state, payload) => {
+    Vue.set(state, 'valueOfCategory', payload)
+  },
+  'SET_BOOKS_OF_SUBCATEGORY': (state, payload) => {
+    Vue.set(state, 'booksOfSubcategory', payload)
+  }
 }

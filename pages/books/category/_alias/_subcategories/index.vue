@@ -3,8 +3,8 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-        <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/${valueOfRouterCategory.alias}`"><a>{{valueOfRouterCategory.name}}</a></nuxt-link>
-        <nuxt-link tag="li" class="breadcrumb-item active" :to="`/books/category/${valueOfRouterCategory.alias}/${valueOfRouterSubcategory.alias}`"><a>{{valueOfRouterSubcategory.name}}</a></nuxt-link>
+        <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/${currentValueCategory.alias}`"><a>{{currentValueCategory.name}}</a></nuxt-link>
+        <nuxt-link tag="li" class="breadcrumb-item active" :to="`/books/category/${currentValueCategory.alias}/${currentValueSubcategory.alias}`"><a>{{currentValueSubcategory.name}}</a></nuxt-link>
       </ol>
     </nav>
     <table class="table">
@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(book,index) in books" :key="book.id">
+        <tr v-for="(book,index) in booksOfSubcategory" :key="book.id">
           <th scope="row">{{index+1}}</th>
           <td>{{book.title}}</td>
           <td>{{book.description}}</td>
@@ -28,52 +28,29 @@
 
 <script>
   export default {
-    data() {
-      return {
-        subcategories: [],
-        books: [],
-        valueOfRouterCategory: '',
-        valueOfRouterSubcategory: ''
+    computed: {
+      currentValueCategory() {
+        return this.$store.getters.categories.find(item => {
+          if (item.alias == this.$route.params.alias) {
+            return item
+          }
+        })
+      },
+      currentValueSubcategory() {
+        return this.$store.getters.subcategories.find(item => {
+          if (item.alias == this.$route.params.subcategories) {
+            return item
+          }
+        })
+      },
+      booksOfSubcategory() {
+        return this.$store.getters.booksOfSubcategory
       }
     },
     async mounted() {
-      let currentID = this.$store.getters.categories.find(item => {
-        if (item.alias == this.$route.params.alias) {
-          return item
-        }
-      })
-      const categories = []
-      let response = await this.$http.get('http://bootcamp.opole.pl/categories')
-      let responseData = response.data.categories
-      for (let i in responseData) {
-        categories.unshift(responseData[i])
-      }
-      categories.find(item => {
-        if (item.id == currentID.id) {
-          return this.valueOfRouterCategory = item
-        }
-      })
-      await this.$http.post('http://bootcamp.opole.pl/subcategories', {
-          id: currentID.id
-        }, {
-          emulateJSON: true
-        })
-        .then(response => {
-            for (let i in response.body.sub_categories) {
-              this.subcategories.push(response.body.sub_categories[i])
-            }
-        })
-      let currentSubID = this.subcategories.find(item => {
-        if (item.alias == this.$route.params.subcategories) {
-          return this.valueOfRouterSubcategory = item
-        }
-      })
-      await this.$http.get('http://bootcamp.opole.pl/books/my-books/subcategory/' + currentSubID.id + '/87f4')
-        .then(response => {
-          for (let i in response.body.books) {
-            this.books.push(response.body.books[i])
-          }
-        })
+      await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory.id)
+      await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
+      await this.$store.dispatch('GET_BOOKS_OF_SUBCATEGORY', this.currentValueSubcategory.id)
     }
   }
 </script>

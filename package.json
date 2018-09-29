@@ -2,7 +2,7 @@
   "name": "books-nuxtjs",
   "version": "1.0.0",
   "description": "Nuxt.js project",
-  "author": "Kedra, Krystian <krystian.kedra@atos.net>",
+  "author": "Kedra, Krystian",
   "private": true,
   "main": "main.js",
   "scripts": {

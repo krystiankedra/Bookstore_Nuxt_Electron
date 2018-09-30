@@ -2,9 +2,9 @@
   <div class="container mt-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-        <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/${currentValueCategory.alias}`"><a>{{currentValueCategory.name}}</a></nuxt-link>
-        <nuxt-link tag="li" class="breadcrumb-item active" :to="`/books/category/${currentValueCategory.alias}/${currentValueSubcategory.alias}`"><a>{{currentValueSubcategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item" :to="`/books/category/${currentValueCategory.alias}`"><a>{{currentValueCategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item active" :to="`/books/category/${currentValueCategory.alias}/${currentValueSubcategory.alias}`"><a>{{currentValueSubcategory.name}}</a></nuxt-link>
       </ol>
     </nav>
     <table class="table">

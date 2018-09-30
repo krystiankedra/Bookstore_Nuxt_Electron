@@ -3,8 +3,8 @@
     <div class="row mt-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <nuxt-link tag="li" class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-          <nuxt-link tag="li" class="breadcrumb-item active" :to="`/books/category/${valueOfCategory.alias}`">
+          <nuxt-link class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
+          <nuxt-link class="breadcrumb-item active" :to="`/books/category/${valueOfCategory.alias}`">
             <a>{{valueOfCategory.name}}</a></nuxt-link>
         </ol>
       </nav>

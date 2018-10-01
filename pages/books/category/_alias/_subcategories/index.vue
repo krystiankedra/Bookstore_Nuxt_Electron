@@ -58,7 +58,6 @@
       await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
       await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {categoryValue: this.currentValueCategory.id, subcategoryValue: this.currentValueSubcategory.id})
       await this.$store.dispatch('GET_BOOKS_OF_SUBCATEGORY', this.currentValueSubcategory.id)
-      await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory.id)
     }
   }
 

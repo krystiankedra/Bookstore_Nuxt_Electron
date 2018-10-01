@@ -159,16 +159,15 @@ export default {
         const subcategories = []
         let response = await Vue.http.post('http://bootcamp.opole.pl/subcategories', {id: payload.categoryValue}, {emulateJSON: true})
         let responseData = response.body.sub_categories
-          console.log(responseData)
         for (let i in responseData) {
           subcategories.push(responseData[i])
         }
         subcategories.find(item => {
           if(item.id == payload.subcategoryValue) {
-            console.log(item)
             commit('SET_SUBCATEGORY_VALUE', item)
           }
         })
+        await this.dispatch('GET_CATEGORY_VALUE',{ id : payload.categoryValue})
       } catch (e) {
         console.log(e)
       }

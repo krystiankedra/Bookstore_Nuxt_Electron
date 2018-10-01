@@ -13,7 +13,7 @@
     </div>
     <div class="text-center">
       <nuxt-link tag="li" :to="{ path:'/books/category/' + category.alias}" v-for="category in categories" :key="category.id"><a class="btn btn-primary">{{category.name}}</a></nuxt-link>
-    </div> 
+    </div>
     </div>
 </template>
 
@@ -21,8 +21,11 @@
   export default {
     computed: {
       categories() {
-        return this.$store.getters.categories
+        return this.$store.getters.categories ? this.$store.getters.categories : []
       }
+    },
+    async mounted() {
+      await this.$store.dispatch('GET_CATEGORIES')
     }
   }
 

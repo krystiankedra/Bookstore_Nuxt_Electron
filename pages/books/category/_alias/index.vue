@@ -14,7 +14,7 @@
         <div class="dropdown">
           <button class="dropbtn btn btn-primary">Subcategory</button>
           <div class="dropdown-content">
-            <nuxt-link tag="li" :to="`/books/category/${valueOfCategory.alias}/${subcategory.alias}`" v-for="subcategory in subcategories"
+            <nuxt-link :to="`/books/category/${valueOfCategory.alias}/${subcategory.alias}`" v-for="subcategory in subcategories"
               :key="subcategory.id" append><a>{{subcategory.name}}</a></nuxt-link>
           </div>
         </div>
@@ -52,20 +52,21 @@
         })
       },
       subcategories() {
-        return this.$store.getters.subcategories
+        return this.$store.getters.subcategories ? this.$store.getters.subcategories : []
       },
       booksOfCategory() {
-        return this.$store.getters.booksOfCategory
+        return this.$store.getters.booksOfCategory ? this.$store.getters.booksOfCategory  : []
       },
       valueOfCategory() {
-        return this.$store.getters.valueOfCategory
+        return this.$store.getters.valueOfCategory ? this.$store.getters.valueOfCategory : []
       }
     },
     async mounted() {
+      await this.$store.dispatch('GET_CATEGORIES')
       await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
       await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)
       await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory)
-    }
+    },
   }
 
 </script>

@@ -3,8 +3,8 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <nuxt-link class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-        <nuxt-link class="breadcrumb-item" :to="`/books/category/${currentValueCategory.alias}`"><a>{{currentValueCategory.name}}</a></nuxt-link>
-        <nuxt-link class="breadcrumb-item active" :to="`/books/category/${currentValueCategory.alias}/${currentValueSubcategory.alias}`"><a>{{currentValueSubcategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item" :to="`/books/category/${valueOfCategory.alias}`"><a>{{valueOfCategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item active" :to="`/books/category/${valueOfCategory.alias}/${valueOfSubcategory.alias}`"><a>{{valueOfSubcategory.name}}</a></nuxt-link>
       </ol>
     </nav>
     <table class="table">
@@ -44,13 +44,22 @@
         })
       },
       booksOfSubcategory() {
-        return this.$store.getters.booksOfSubcategory
+        return this.$store.getters.booksOfSubcategory ? this.$store.getters.booksOfSubcategory : []
+      },
+      valueOfCategory() {
+        return this.$store.getters.valueOfCategory ? this.$store.getters.valueOfCategory : []
+      },
+      valueOfSubcategory() {
+        return this.$store.getters.valueOfSubcategory ? this.$store.getters.valueOfSubcategory : []
       }
     },
     async mounted() {
-      await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory.id)
+      await this.$store.dispatch('GET_CATEGORIES')
       await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
+      await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {categoryValue: this.currentValueCategory.id, subcategoryValue: this.currentValueSubcategory.id})
       await this.$store.dispatch('GET_BOOKS_OF_SUBCATEGORY', this.currentValueSubcategory.id)
+      await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory.id)
     }
   }
+
 </script>

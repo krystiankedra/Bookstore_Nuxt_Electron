@@ -141,13 +141,36 @@ export default {
       }
     },
     async 'GET_BOOKS_OF_SUBCATEGORY'({commit}, payload) {
-      await Vue.http.get('http://bootcamp.opole.pl/books/my-books/subcategory/' + payload +'/87f4')
-      .then(response => {
-        const books = []
-        for (let i in response.body.books) {
-          books.push(response.body.books[i])
+      try {
+        await Vue.http.get('http://bootcamp.opole.pl/books/my-books/subcategory/' + payload +'/87f4')
+        .then(response => {
+          const books = []
+          for (let i in response.body.books) {
+            books.push(response.body.books[i])
+          }
+          commit('SET_BOOKS_OF_SUBCATEGORY', books)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async 'GET_SUBCATEGORY_VALUE'({commit}, payload) {
+      try {
+        const subcategories = []
+        let response = await Vue.http.post('http://bootcamp.opole.pl/subcategories', {id: payload.categoryValue}, {emulateJSON: true})
+        let responseData = response.body.sub_categories
+          console.log(responseData)
+        for (let i in responseData) {
+          subcategories.push(responseData[i])
         }
-        commit('SET_BOOKS_OF_SUBCATEGORY', books)
-      })
+        subcategories.find(item => {
+          if(item.id == payload.subcategoryValue) {
+            console.log(item)
+            commit('SET_SUBCATEGORY_VALUE', item)
+          }
+        })
+      } catch (e) {
+        console.log(e)
+      }
     }
   }

@@ -6,5 +6,6 @@ export default {
     subcategories: [],
     booksOfCategory: [],
     valueOfCategory:[],
-    booksOfSubcategory:[]
+    booksOfSubcategory:[],
+    valueOfSubcategory: []
   }

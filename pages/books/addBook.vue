@@ -26,10 +26,10 @@
       <button class="btn btn-success" @click="addBook">Add Book <i class="fas fa-plus-circle"></i></button>
     </div>
     <div class="mt-5">
-      <div class="alert alert-success col-md-2 float-left text-center mr-1" v-if="title.length > 0">
+      <div class="alert alert-success col-md-5 float-left text-center" v-if="title.length > 0">
         <span>Title is correct <i class="fas fa-thumbs-up"></i></span>
       </div>
-      <div class="alert alert-success col-md-2 float-left text-center" v-if="description.length > 0">
+      <div class="alert alert-success col-md-5 float-right text-center" v-if="description.length > 0">
         <span>Description is correct <i class="fas fa-thumbs-up"></i></span>
       </div>
     </div>

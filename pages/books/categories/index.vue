@@ -3,7 +3,7 @@
       <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">
-         <nuxt-link tag="li" :to="`/books/category/`"><a>Category</a></nuxt-link> 
+         <nuxt-link tag="li" :to="`/books/categories/`"><a>Category</a></nuxt-link> 
         </li>
       </ol>
     </nav>
@@ -12,7 +12,7 @@
       <p>Select one of below categories. Use breadcrumbs to navigate beetwen categories or subcategories</p>
     </div>
     <div class="text-center">
-      <nuxt-link tag="li" :to="{ path:'/books/category/' + category.alias}" v-for="category in categories" :key="category.id"><a class="btn btn-primary">{{category.name}}</a></nuxt-link>
+      <nuxt-link tag="li" :to="`/books/categories/${category.alias}`" v-for="category in categories" :key="category.id"><a class="btn btn-primary">{{category.name}}</a></nuxt-link>
     </div>
     </div>
 </template>

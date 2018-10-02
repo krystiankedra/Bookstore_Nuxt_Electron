@@ -2,9 +2,9 @@
   <div class="container mt-5">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <nuxt-link class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-        <nuxt-link class="breadcrumb-item" :to="`/books/category/${valueOfCategory.alias}`"><a>{{valueOfCategory.name}}</a></nuxt-link>
-        <nuxt-link class="breadcrumb-item active" :to="`/books/category/${valueOfCategory.alias}/${valueOfSubcategory.alias}`"><a>{{valueOfSubcategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Category</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item" :to="`/books/categories/${valueOfCategory.alias}`"><a>{{valueOfCategory.name}}</a></nuxt-link>
+        <nuxt-link class="breadcrumb-item active" :to="`/books/categories/${valueOfCategory.alias}/${valueOfSubcategory.alias}`"><a>{{valueOfSubcategory.name}}</a></nuxt-link>
       </ol>
     </nav>
     <table class="table">
@@ -31,14 +31,14 @@
     computed: {
       currentValueCategory() {
         return this.$store.getters.categories.find(item => {
-          if (item.alias == this.$route.params.alias) {
+          if (item.alias == this.$route.params.category) {
             return item
           }
         })
       },
       currentValueSubcategory() {
         return this.$store.getters.subcategories.find(item => {
-          if (item.alias == this.$route.params.subcategories) {
+          if (item.alias == this.$route.params.subcategory) {
             return item
           }
         })

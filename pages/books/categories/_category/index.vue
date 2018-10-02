@@ -3,8 +3,8 @@
     <div class="row mt-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <nuxt-link class="breadcrumb-item" :to="`/books/category/`"><a>Category</a></nuxt-link>
-          <nuxt-link class="breadcrumb-item active" :to="`/books/category/${valueOfCategory.alias}`">
+          <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Category</a></nuxt-link>
+          <nuxt-link class="breadcrumb-item active" :to="`/books/categories/${valueOfCategory.alias}`">
             <a>{{valueOfCategory.name}}</a></nuxt-link>
         </ol>
       </nav>
@@ -14,7 +14,7 @@
         <div class="dropdown">
           <button class="dropbtn btn btn-primary">Subcategory</button>
           <div class="dropdown-content">
-            <nuxt-link :to="`/books/category/${valueOfCategory.alias}/${subcategory.alias}`" v-for="subcategory in subcategories"
+            <nuxt-link :to="`/books/categories/${valueOfCategory.alias}/${subcategory.alias}`" v-for="subcategory in subcategories"
               :key="subcategory.id" append><a>{{subcategory.name}}</a></nuxt-link>
           </div>
         </div>
@@ -45,8 +45,9 @@
   export default {
     computed: {
       currentValueCategory() {
+        console.log(this.$route.params)
         return this.$store.getters.categories.find(item => {
-          if (item.alias == this.$route.params.alias) {
+          if (item.alias == this.$route.params.category) {
             return item
           }
         })
@@ -62,6 +63,7 @@
       }
     },
     async mounted() {
+      console.log(this.$route.params)
       await this.$store.dispatch('GET_CATEGORIES')
       await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
       await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)

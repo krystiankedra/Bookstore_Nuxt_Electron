@@ -156,6 +156,7 @@ export default {
     },
     async 'GET_SUBCATEGORY_VALUE'({commit}, payload) {
       try {
+        await this.dispatch('GET_CATEGORY_VALUE',{ id : payload.categoryValue})
         const subcategories = []
         let response = await Vue.http.post('http://bootcamp.opole.pl/subcategories', {id: payload.categoryValue}, {emulateJSON: true})
         let responseData = response.body.sub_categories
@@ -167,7 +168,7 @@ export default {
             commit('SET_SUBCATEGORY_VALUE', item)
           }
         })
-        await this.dispatch('GET_CATEGORY_VALUE',{ id : payload.categoryValue})
+       
       } catch (e) {
         console.log(e)
       }

@@ -76,5 +76,8 @@ export default {
   },
   'SET_SUBCATEGORY_VALUE': (state, payload) => {
     Vue.set(state, 'valueOfSubcategory', payload)
+  },
+  'ERROR': (state, payload) => {
+    Vue.set(state, 'error', payload)
   }
 }

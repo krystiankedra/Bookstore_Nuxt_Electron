@@ -25,7 +25,11 @@
       }
     },
     async mounted() {
-      await this.$store.dispatch('GET_CATEGORIES')
+      try {
+        await this.$store.dispatch('GET_CATEGORIES')
+      } catch (e) {
+        this.$store.commit('ERROR', e)
+      }
     }
   }
 </script>

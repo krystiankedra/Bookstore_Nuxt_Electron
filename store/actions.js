@@ -11,7 +11,7 @@ export default {
         }
         commit('SET_BOOKS', books)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'SEND_BOOK'({commit}, payload) {
@@ -19,7 +19,7 @@ export default {
         await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', payload, {emulateJSON: true})
         commit('ADD_BOOK', payload)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'DELETE_BOOK'({commit}, payload) {
@@ -27,7 +27,7 @@ export default {
         await Vue.http.delete('http://bootcamp.opole.pl/books/delete-book/' + payload.bookId + '/87f4')
         commit('DELETE_BOOK', payload)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'MODIFY_BOOK'({commit}, payload) {
@@ -39,7 +39,7 @@ export default {
         commit('SET_RATES', rates)
         commit('MODIFY_BOOK', payload)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     'SORT_BY_TITLE'({commit}, payload) {
@@ -54,7 +54,7 @@ export default {
         const rates = response.body.rates
         commit('SET_RATES', rates)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'DELETE_SELECTED'({commit}) {
@@ -67,7 +67,7 @@ export default {
         const books = response.data.books
         commit('SET_BOOKS', books)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     'SELECTED_BOOK'({commit}, payload) {
@@ -81,7 +81,7 @@ export default {
           await Vue.http.post('http://bootcamp.opole.pl/books/add-book/87f4', responseData[i] , {emulateJSON: true})
         }
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_CATEGORIES'({commit}) {
@@ -94,7 +94,7 @@ export default {
         }
         commit('SET_CATEGORIES', categories)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_SUBCATEGORIES'({commit}, payload) {
@@ -107,7 +107,7 @@ export default {
         }
         commit('SET_SUBCATEGORIES', subcategories)
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_BOOKS_OF_CATEGORY'({commit}, payload) {
@@ -121,7 +121,7 @@ export default {
           commit('SET_BOOKS_OF_CATEGORY', booksOfCategory)
         })
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_CATEGORY_VALUE'({commit}, payload) {
@@ -137,7 +137,7 @@ export default {
             commit('SET_CATEGORY_VALUE', item)
         }})
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_BOOKS_OF_SUBCATEGORY'({commit}, payload) {
@@ -151,7 +151,7 @@ export default {
           commit('SET_BOOKS_OF_SUBCATEGORY', books)
         })
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     },
     async 'GET_SUBCATEGORY_VALUE'({commit}, payload) {
@@ -169,7 +169,7 @@ export default {
           }
         })
       } catch (e) {
-        console.log(e)
+        commit('ERROR', e)
       }
     }
   }

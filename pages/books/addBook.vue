@@ -42,7 +42,7 @@
       try {
         await this.$store.dispatch('GET_CATEGORIES')
       } catch (e) {
-        console.log(e);
+        this.$store.commit('ERROR', e)
       }
     },
     data() {
@@ -68,11 +68,15 @@
             this.$router.push('/books')
           }
         } catch (e) {
-          console.log(e);
+          this.$store.commit('ERROR', e)
         }
       },
-      getSubcategories(value) {
-        this.$store.dispatch('GET_SUBCATEGORIES', value)
+      async getSubcategories(value) {
+        try {
+          await this.$store.dispatch('GET_SUBCATEGORIES', value)
+        } catch (e) {
+          this.$store.commit('ERROR', e)
+        }
       }
     },
     computed: {
@@ -84,5 +88,4 @@
       }
     }
   }
-
 </script>

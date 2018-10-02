@@ -62,10 +62,14 @@
       }
     },
     async mounted() {
-      await this.$store.dispatch('GET_CATEGORIES')
-      await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
-      await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)
-      await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory)
+      try {
+        await this.$store.dispatch('GET_CATEGORIES')
+        await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
+        await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)
+        await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory)
+      } catch (e) {
+        this.$store.commit('ERROR', e)
+      }
     },
   }
 </script>

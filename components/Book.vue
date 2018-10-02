@@ -102,16 +102,20 @@
             index: index
           })
         } catch (e) {
-          console.log(e);
+          this.$store.commit('ERROR', e)
         }
       },
       selectedBook(bookId) {
-        this.checkBook = !this.checkBook
-        const bookSelected = {}
-        this.$set(bookSelected, 'bookId', bookId)
-        this.$set(bookSelected, 'index', this.index)
-        this.$set(bookSelected, 'checked', this.checkBook)
-        this.$store.dispatch('SELECTED_BOOK', bookSelected)
+        try {
+          this.checkBook = !this.checkBook
+          const bookSelected = {}
+          this.$set(bookSelected, 'bookId', bookId)
+          this.$set(bookSelected, 'index', this.index)
+          this.$set(bookSelected, 'checked', this.checkBook)
+          this.$store.dispatch('SELECTED_BOOK', bookSelected)
+        } catch (e) {
+          this.$store.commit('ERROR', e)
+        }
       },
       async modifyBook(bookId, index) {
         try {
@@ -131,11 +135,15 @@
             this.newRate = null
           }
         } catch (e) {
-          console.log(e);
+          this.$store.commit('ERROR', e)
         }
       },
       async getSubcategories(value) {
-        await this.$store.dispatch('GET_SUBCATEGORIES', value)
+        try {
+          await this.$store.dispatch('GET_SUBCATEGORIES', value)
+        } catch (e) {
+          this.$store.commit('ERROR', e)
+        }
       }
     },
     watch: {
@@ -144,7 +152,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>

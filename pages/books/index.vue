@@ -44,7 +44,7 @@
         await this.$store.dispatch('GET_RATES')
         await this.$store.dispatch('GET_CATEGORIES')
       } catch (e) {
-        console.log(e);
+        this.$store.commit('ERROR', e)
       }
     },
     data() {
@@ -74,17 +74,25 @@
         this.$store.dispatch("SORT_BY_DESCRIPTION", value);
       },
       async deleteSelected() {
-        if (this.$store.state.selectedBooks.length == 0) {
-          this.$router.push('/books/alertSelect')
-          return false;
-        } else {
-          await this.$store.dispatch('DELETE_SELECTED');
-          this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster
+        try {
+          if (this.$store.state.selectedBooks.length == 0) {
+            this.$router.push('/books/alertSelect')
+            return false;
+          } else {
+            await this.$store.dispatch('DELETE_SELECTED');
+            this.checkMaster ? this.checkMaster = !this.checkMaster : this.checkMaster
+          }
+        } catch (e) {
+          this.$store.commit('ERROR', e)
         }
       },
       async addJson() {
-        await this.$store.dispatch('GET_JSON')
-        await this.$store.dispatch('GET_BOOKS')
+        try {
+          await this.$store.dispatch('GET_JSON')
+          await this.$store.dispatch('GET_BOOKS')
+        } catch (e) {
+          this.$store.commit('ERROR', e)
+        }
       }
     },
   }

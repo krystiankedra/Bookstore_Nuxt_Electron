@@ -79,5 +79,8 @@ export default {
   },
   'ERROR': (state, payload) => {
     Vue.set(state, 'error', payload)
+  },
+  'SET_VALUE_OF_BOOK': (state, payload) => {
+    Vue.set(state, 'valueOfBook', payload)
   }
 }

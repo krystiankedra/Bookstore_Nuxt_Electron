@@ -171,5 +171,22 @@ export default {
       } catch (e) {
         commit('ERROR', e)
       }
+    },
+    async 'GET_VALUE_OF_BOOK'({commit}, payload) {
+      try {
+        const books = []
+        let response = await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
+        let responseData = response.data.books
+        for (let i in responseData) {
+          books.unshift(responseData[i])
+        }
+        books.find(item => {
+          if(item.id == payload) {
+            commit('SET_VALUE_OF_BOOK', item)
+          }
+        })
+      } catch (e) {
+        commit('ERROR', e)
+      }
     }
   }

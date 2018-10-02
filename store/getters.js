@@ -22,5 +22,8 @@ export default {
     },
     valueOfSubcategory: state => {
       return state.valueOfSubcategory
+    },
+    valueOfBook: state => {
+      return state.valueOfBook
     }
   }

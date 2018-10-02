@@ -8,5 +8,6 @@ export default {
     valueOfCategory:[],
     booksOfSubcategory:[],
     valueOfSubcategory: [],
-    error: []
+    error: [],
+    valueOfBook: []
   }

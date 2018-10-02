@@ -26,6 +26,7 @@
               <th scope="col">#</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,7 @@
               <th scope="row">{{index+1}}</th>
               <td>{{book.title}}</td>
               <td>{{book.description}}</td>
+              <nuxt-link tag="td" :to="`/books/${book.id}`" ><a>View Details</a></nuxt-link>
             </tr>
           </tbody>
         </table>

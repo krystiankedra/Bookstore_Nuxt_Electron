@@ -9,23 +9,23 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-12">
         <button class="btn btn-secondary" @click="sortTitle(sortByTitle=!sortByTitle)">Sort Title
           <i :class="[sortByTitle ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>
         </button>
       </div>
-      <div class="col-sm-3">
+      <div class="col-md-3 col-sm-12">
         <button class="btn btn-secondary" @click="sortDesc(sortByDesc=!sortByDesc)">Sort Desc
           <i :class="[sortByDesc ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>
         </button>
       </div>
-      <div class="col-sm-3">
-        <button class="btn btn-danger" @click="deleteSelected">Delete Selected Book <i class="fas fa-trash-alt"></i></button>
+      <div class="col-md-3 col-sm-12">
+        <button class="btn btn-danger" @click="deleteSelected">Delete Selected <i class="fas fa-trash-alt"></i></button>
       </div>
-      <div class="col-sm-1">
+      <div class="col-md-1 col-sm-12 text-center">
         <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster" class="font-size-checkbox">
       </div>
-      <div class="col-sm-2">
+      <div class="col-md-2 col-sm-12">
         <button class="btn btn-primary" @click="addJson">Import From File <i class="fas fa-file"></i></button>
       </div>
     </div>
@@ -94,5 +94,16 @@
   .font-size-checkbox {
     width: 25px;
     height: 25px;
+  }
+
+  @media only screen and (max-width:768px) {
+    .btn {
+      width: 100%;
+      margin:5px;
+    }
+    .font-size-checkbox {
+      width: 40px;
+      height: 40px;
+    }
   }
 </style>

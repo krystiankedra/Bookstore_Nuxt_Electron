@@ -7,7 +7,7 @@
         </div>
         <h5 class="card-title text-center"><strong>{{book.title}}</strong></h5>
         <p class="text-justify"><strong>Description: </strong>{{book.description.slice(0,70) + '...'}}</p>
-        <p><strong>Category: </strong>{{categoryValue ? category : 'No Category yet!'}}</p>
+        <p><strong>Category: </strong>{{categoryValue ? categoryValue.name : 'No Category yet!'}}</p>
         <nuxt-link :to="`/books/${book.id}`">
           <p class="text-center"><img class="img-fluid" :src="bookPhoto" alt="Click here to more info about book"></p>
         </nuxt-link>
@@ -82,7 +82,7 @@
       categoryValue() {
         return this.$store.getters.categories.find(category => {
           if (category.id == this.book.category) {
-            return this.$set(this, 'category', category.name)
+            return category
           }
         })
       },
@@ -227,6 +227,25 @@
 
   .card {
     box-shadow: 10px 10px 30px 0px rgba(0, 0, 0, 0.75);
-    background-color: rgba(126, 214, 223, 0.4);
+    border: 1px solid blanchedalmond;
   }
+
+    @media only screen and (max-width:768px) {
+      .btn {
+        width: 100%;
+      }
+      .myModalContent {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 100%;
+        border-radius: 0.5rem;
+      }
+      .close-button {
+        margin-top:5px;
+      }
+    }
 </style>

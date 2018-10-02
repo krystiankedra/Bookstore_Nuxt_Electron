@@ -7,7 +7,7 @@
         <nuxt-link class="breadcrumb-item active" :to="`/books/categories/${valueOfCategory.alias}/${valueOfSubcategory.alias}`"><a>{{valueOfSubcategory.name}}</a></nuxt-link>
       </ol>
     </nav>
-    <table class="table">
+    <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -60,5 +60,4 @@
       await this.$store.dispatch('GET_BOOKS_OF_SUBCATEGORY', this.currentValueSubcategory.id)
     }
   }
-
 </script>

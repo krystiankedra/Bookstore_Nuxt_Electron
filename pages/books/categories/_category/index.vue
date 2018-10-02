@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row mt-5">
+    <div class="mt-5">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Category</a></nuxt-link>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="col-md-9">
-        <table class="table">
+        <table class="table table-striped table-bordered">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -68,10 +68,15 @@
       await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory)
     },
   }
-
 </script>
 
-<style>
+<style scoped>
+  @media only screen and (max-width:768px) {
+    .dropdown {
+      margin-bottom:30px;
+    }
+  }
+
   .dropbtn {
     padding: 12px;
     font-size: 16px;
@@ -103,10 +108,11 @@
 
   .dropdown-content a:hover {
     color: red;
+    background-color: blanchedalmond;
   }
 
   .dropdown:hover .dropdown-content {
     display: block;
+    opacity: .9;
   }
-
 </style>

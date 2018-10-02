@@ -23,6 +23,7 @@ export default {
     Vue.set(state.books[payload.index], 'title', payload.title)
     Vue.set(state.books[payload.index], 'description', payload.description)
     Vue.set(state.books[payload.index], 'category', payload.category)
+    Vue.set(state.books[payload.index], 'subcategory', payload.subcategory)
   },
   'SORTED_TITLE': (state, payload) => {
     if (payload) {

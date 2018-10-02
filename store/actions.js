@@ -168,7 +168,6 @@ export default {
             commit('SET_SUBCATEGORY_VALUE', item)
           }
         })
-       
       } catch (e) {
         console.log(e)
       }

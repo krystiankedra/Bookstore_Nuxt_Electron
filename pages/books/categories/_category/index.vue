@@ -45,7 +45,6 @@
   export default {
     computed: {
       currentValueCategory() {
-        console.log(this.$route.params)
         return this.$store.getters.categories.find(item => {
           if (item.alias == this.$route.params.category) {
             return item
@@ -63,7 +62,6 @@
       }
     },
     async mounted() {
-      console.log(this.$route.params)
       await this.$store.dispatch('GET_CATEGORIES')
       await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
       await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)

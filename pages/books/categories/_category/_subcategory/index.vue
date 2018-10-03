@@ -12,12 +12,12 @@
     </div>
     <div class="row" v-if="booksOfSubcategory.length > 0">
       <BookLight v-for="book in booksOfSubcategory" class="col-sm-12 col-md-6 d-flex" :book="book" :key="book.id"></BookLight>
-     </div>  
-      <div class="card mt-5 text-center" v-if="booksOfSubcategory.length == 0">
-        <div class="card-header">
-          <span>You dont't have books in this subcategory.</span>
-        </div>
+    </div>
+    <div class="card mt-5 text-center" v-if="booksOfSubcategory.length == 0">
+      <div class="card-header">
+        <span>You dont't have books in this subcategory.</span>
       </div>
+    </div>
   </div>
 </template>
 

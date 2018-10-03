@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="row">
-      <Book class="col-md-4 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book"
+      <Book class="col-md-6 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book"
         :checkMaster="checkMaster"></Book>
     </div>
   </div>
@@ -61,7 +61,7 @@
         });
       },
       amountSelectedBooks() {
-        return this.$store.getters.selectedBooksLength
+        return this.$store.getters.selectedBooks.length
       }
     },
     components: {

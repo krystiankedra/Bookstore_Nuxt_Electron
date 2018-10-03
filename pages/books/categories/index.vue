@@ -22,7 +22,7 @@
       </div>
       <div class="card-footer text-center">
         <div class="text-center">
-          <nuxt-link tag="button" class="btn btn-outline-primary" :to="`/books/categories/${category.alias}`" v-for="category in categories"
+          <nuxt-link tag="button" class="btn btn-outline-primary col-sm-12 col-md-4" :to="`/books/categories/${category.alias}`" v-for="category in categories"
             :key="category.id">{{category.name}}</nuxt-link>
         </div>
       </div>

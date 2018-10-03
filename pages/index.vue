@@ -9,8 +9,8 @@
         <hr>
         <p class="mb-0">Whenever you need to, be sure to use it's Vuex, VueResource, NuxtJs, VueJs.</p>
         <hr>
-        <nuxt-link tag="button" :to="`/books/`" class="btn btn-outline-primary"><span class="badge badge-light" v-if="amountBooksList">{{amountBooksList}}</span>
-          View Book List</nuxt-link>
+        <nuxt-link tag="button" :to="`/books/`" class="btn btn-outline-primary col-md-3 col-sm-12"><span class="badge badge-light" v-if="amountBooksList">{{amountBooksList}}</span>
+          View Book List <i class="fas fa-sign-out-alt"></i></nuxt-link>
       </div>
       <div class="card-footer text-center">&copy; Krystian Kędra</div>
     </div>

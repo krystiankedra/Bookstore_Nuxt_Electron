@@ -19,34 +19,27 @@
           <star-rating v-model="average" :increment="0.01" :border-width="3" :star-size="25" :read-only="true"></star-rating>
         </div>
       </div>
-      <div class="card-footer">
-        <div class="row">
-          <div class="col-md-4">
-            <nuxt-link tag="button" class="btn btn-outline-primary" :to="`/books/${book.id}`">Details <i class="fas fa-info"></i></nuxt-link>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-outline-danger float-right" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
-          </div>
-          <div class="col-md-4">
-            <button class="btn btn-outline-success float-left" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
-          </div>
-        </div>
+      <div class="card-footer text-center">
+        <nuxt-link tag="button" class="btn btn-outline-primary btn-margin" :to="`/books/${book.id}`">Details <i class="fas fa-info"></i></nuxt-link>
+        <button class="btn btn-outline-danger btn-margin" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
+        <button class="btn btn-outline-success btn-margin" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
       </div>
       <div v-if="showEditBook">
         <div class="container">
           <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
             <div class="myModalContent">
-              <span class="close-button" @click="closeModal()"><i class="fas fa-times"></i></span>
+              <span class="close-button" @click="closeModal"><i class="fas fa-times"></i></span>
               <h3>Modify Book</h3>
               <label class="label-margin-top"><strong>Title:</strong></label>
               <textarea class="form-control text-justify" v-model="newTitle" :placeholder="book.title" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
-              <textarea class="form-control text-justify" v-model="newDescription" :placeholder="book.description" rows="4" cols="5"></textarea>
+              <textarea class="form-control text-justify" v-model="newDescription" :placeholder="book.description" rows="4"
+                cols="5"></textarea>
               <button class="btn btn-outline-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
-              <label class="label-margin-top"><strong>New Rate:</strong></label>
+              <label class="label-margin-top"><strong>Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
               <div class="form-group row  mt-3">
-                <label for="category" class="col-sm-2 col-form-label"><strong>New Category</strong></label>
+                <label for="category" class="col-sm-3 col-form-label"><strong>Category:</strong></label>
                 <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
                   <option disabled value="">Please select category</option>
                   <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
@@ -54,7 +47,7 @@
                 </select>
               </div>
               <div class="form-group row">
-                <label for="subcategory" class="col-sm-2 col-form-label"><strong>New Subcategory</strong></label>
+                <label for="subcategory" class="col-sm-3 col-form-label"><strong>Subcategory:</strong></label>
                 <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
                   <option disabled value="">Please select subcategory</option>
                   <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
@@ -71,7 +64,6 @@
 
 <script>
   import StarRating from 'vue-star-rating'
-  import bookPhoto from '~/assets/book.png'
   export default {
     components: {
       'star-rating': StarRating
@@ -80,7 +72,6 @@
       return {
         showEditBook: false,
         checkBook: false,
-        bookPhoto,
         average: null,
         newRate: null,
         category: '',
@@ -179,13 +170,8 @@
 </script>
 
 <style scoped>
-  img {
-    transition: .5s ease-in-out;
-    transform: scale(0.7);
-  }
-
-  img:hover {
-    transform: scale(1);
+  .btn-margin {
+    margin: 5px;
   }
 
   .font-size-checkbox {

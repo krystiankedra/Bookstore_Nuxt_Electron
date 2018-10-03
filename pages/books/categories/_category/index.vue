@@ -13,17 +13,17 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-md-3">
+      <div class="col-md-3 col-sm-12">
         <div class="dropdown">
           <button class="dropbtn btn btn-outline-primary">Subcategory</button>
           <div class="dropdown-content">
-            <nuxt-link tag="button" class="btn btn-outline-success buttonubcategories" :to="`/books/categories/${valueOfCategory.alias}/${subcategory.alias}`"
+            <nuxt-link tag="button" class="btn btn-outline-success buttonubcategories col-sm-12" :to="`/books/categories/${valueOfCategory.alias}/${subcategory.alias}`"
               v-for="subcategory in subcategories" :key="subcategory.id" append>{{subcategory.name}}</nuxt-link>
           </div>
         </div>
       </div>
       <div class="col-md-9 col-sm-12">
-        <BookLight v-for="book in booksOfCategory" :book="book" :index="index" :key="book.id" v-if="booksOfCategory.length > 0"></BookLight>
+        <BookLight v-for="book in booksOfCategory" :book="book" :key="book.id" v-if="booksOfCategory.length > 0"></BookLight>
         <div class="card" v-if="booksOfCategory.length == 0">
           <div class="card-header text-center">
             <span>You dont't have books in this category.</span>

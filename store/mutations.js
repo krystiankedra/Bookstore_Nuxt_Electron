@@ -82,5 +82,18 @@ export default {
   },
   'SET_VALUE_OF_BOOK': (state, payload) => {
     Vue.set(state, 'valueOfBook', payload)
-  }
+  },
+  'MODIFY_BOOK_LIGHT': (state, payload) => {
+    state.books.some((item, index) => {
+      if(item.id == payload.bookId)  {
+        Vue.set(state.books[index], 'title', payload.title)
+        Vue.set(state.books[index], 'description', payload.description)
+        Vue.set(state.books[index], 'category', payload.category)
+        Vue.set(state.books[index], 'subcategory', payload.subcategory)
+        return true
+      } else {
+        return false;
+      }
+    })
+  },
 }

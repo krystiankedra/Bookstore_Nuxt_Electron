@@ -26,7 +26,7 @@ export default {
     valueOfBook: state => {
       return state.valueOfBook
     },
-    selectedBooksLength: state=> {
-      return state.selectedBooks.length
+    selectedBooks: state=> {
+      return state.selectedBooks
     }
   }

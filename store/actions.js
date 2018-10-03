@@ -26,6 +26,7 @@ export default {
       try {
         await Vue.http.delete('http://bootcamp.opole.pl/books/delete-book/' + payload.bookId + '/87f4')
         commit('DELETE_BOOK', payload)
+        await this.$router.push(`/books`)
       } catch (e) {
         commit('ERROR', e)
       }
@@ -188,5 +189,17 @@ export default {
       } catch (e) {
         commit('ERROR', e)
       }
-    }
+    },
+    async 'MODIFY_BOOK_LIGHT'({commit}, payload) {
+      try {
+        await Vue.http.post('http://bootcamp.opole.pl/books/edit-book/' + payload.bookId + '/87f4', {title: payload.title, description: payload.description, category: payload.category, subcategory: payload.subcategory}, {emulateJSON: true})
+        await Vue.http.post('http://bootcamp.opole.pl/books/rate/87f4', {id: payload.bookId, rate: payload.rate}, {emulateJSON: true})
+        const response = await Vue.http.get('http://bootcamp.opole.pl/books/my-rates/87f4')
+        const rates = response.body.rates
+        commit('SET_RATES', rates)
+        commit('MODIFY_BOOK_LIGHT', payload)
+      } catch (e) {
+        commit('ERROR', e)
+      }
+    },
   }

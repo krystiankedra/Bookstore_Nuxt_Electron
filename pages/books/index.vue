@@ -9,28 +9,26 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-md-3 col-sm-12">
-        <button class="btn btn-secondary" @click="sortTitle(sortByTitle=!sortByTitle)">Sort Title
+      <div class="btn-group col-sm-12 col-md-5">
+        <button class="btn btn-outline-info" @click="sortDesc(sortByDesc=!sortByDesc)">Sort Desc
+          <i :class="[sortByDesc ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>
+        </button>
+        <button class="btn btn-outline-info" @click="sortTitle(sortByTitle=!sortByTitle)">Sort Title
           <i :class="[sortByTitle ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>
         </button>
       </div>
-      <div class="col-md-3 col-sm-12">
-        <button class="btn btn-secondary" @click="sortDesc(sortByDesc=!sortByDesc)">Sort Desc
-          <i :class="[sortByDesc ? 'fas fa-sort-alpha-down' : 'fas fa-sort-alpha-up']"></i>
-        </button>
-      </div>
-      <div class="col-md-3 col-sm-12">
-        <button class="btn btn-danger" @click="deleteSelected">Delete Selected <i class="fas fa-trash-alt"></i></button>
-      </div>
-      <div class="col-md-1 col-sm-12 text-center">
+      <div class="btn-group col-sm-12 col-md-5">
+        <button class="btn btn-outline-danger" @click="deleteSelected"><span class="badge badge-light" v-if="amountSelectedBooks">{{amountSelectedBooks}}</span>
+          Delete Selected <i class="fas fa-trash-alt"></i></button>
         <input type="checkbox" v-model="checkMaster" @input="checkMaster = !checkMaster" class="font-size-checkbox">
       </div>
-      <div class="col-md-2 col-sm-12">
-        <button class="btn btn-primary" @click="addJson">Import From File <i class="fas fa-file"></i></button>
+      <div class="btn-group col-md-2 col-sm-12">
+        <button class="btn btn-outline-primary" @click="addJson">Import From File <i class="fas fa-file"></i></button>
       </div>
     </div>
     <div class="row">
-      <Book class="col-md-4 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book" :checkMaster="checkMaster"></Book>
+      <Book class="col-md-4 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book"
+        :checkMaster="checkMaster"></Book>
     </div>
   </div>
 </template>
@@ -62,6 +60,9 @@
             element.description.toLowerCase().indexOf(this.search.toLowerCase()) > -1);
         });
       },
+      amountSelectedBooks() {
+        return this.$store.getters.selectedBooksLength
+      }
     },
     components: {
       Book
@@ -96,22 +97,26 @@
       }
     },
   }
+
 </script>
 
 <style scoped>
   .font-size-checkbox {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
   }
 
   @media only screen and (max-width:768px) {
     .btn {
       width: 100%;
-      margin:5px;
+      margin: 5px;
     }
+
     .font-size-checkbox {
       width: 40px;
       height: 40px;
     }
   }
+
 </style>

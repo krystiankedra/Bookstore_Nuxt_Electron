@@ -1,9 +1,15 @@
 <template>
-  <div class="jumbotron">
-    <h3 class="text-center"><strong>Title: </strong>{{valueOfBook.title}}</h3>
-    <p class="text-justify mt-3"><strong>Description: </strong>{{valueOfBook.description}}</p>
-    <p class="text-justify mt-3"><strong>Category: </strong>{{valueOfCategory.name}}</p>
-    <p class="text-justify mt-3"><strong>Subcategory: </strong>{{valueOfSubcategory.name}}</p>
+  <div class="container">
+    <div class="card mt-5">
+      <div class="card-header text-center">
+        <strong>Title: </strong>{{valueOfBook.title}}
+      </div>
+      <div class="card-body">
+        <p class="text-justify mt-3"><strong>Description: </strong>{{valueOfBook.description}}</p>
+        <p class="text-justify mt-3"><strong>Category: </strong>{{valueOfCategory.name}}</p>
+        <p class="text-justify mt-3"><strong>Subcategory: </strong>{{valueOfSubcategory.name}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -23,10 +29,14 @@
     async mounted() {
       try {
         await this.$store.dispatch('GET_VALUE_OF_BOOK', this.$route.params.id)
-        await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {categoryValue: this.valueOfBook.category, subcategoryValue: this.valueOfBook.subcategory})
+        await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {
+          categoryValue: this.valueOfBook.category,
+          subcategoryValue: this.valueOfBook.subcategory
+        })
       } catch (e) {
         this.$store.commit('ERROR', e)
       }
     }
   }
+
 </script>

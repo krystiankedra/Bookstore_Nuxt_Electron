@@ -1,35 +1,32 @@
 <template>
   <div class="container mt-5">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Category</a></nuxt-link>
+    <div class="card">
+      <div class="card-header">
+        <h5>Navigation</h5>
+      </div>
+      <div class="card-body">
+        <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Categories</a></nuxt-link>
         <nuxt-link class="breadcrumb-item" :to="`/books/categories/${valueOfCategory.alias}`"><a>{{valueOfCategory.name}}</a></nuxt-link>
         <nuxt-link class="breadcrumb-item active" :to="`/books/categories/${valueOfCategory.alias}/${valueOfSubcategory.alias}`"><a>{{valueOfSubcategory.name}}</a></nuxt-link>
-      </ol>
-    </nav>
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(book,index) in booksOfSubcategory" :key="book.id">
-          <th scope="row">{{index+1}}</th>
-          <td>{{book.title}}</td>
-          <td>{{book.description}}</td>
-          <nuxt-link tag="td" :to="`/books/${book.id}`" ><a>View Details</a></nuxt-link>
-        </tr>
-      </tbody>
-    </table>
+      </div>
+    </div>
+    <div class="row" v-if="booksOfSubcategory.length > 0">
+      <BookLight v-for="book in booksOfSubcategory" class="col-sm-12 col-md-6 d-flex" :book="book" :key="book.id"></BookLight>
+     </div>  
+      <div class="card mt-5 text-center" v-if="booksOfSubcategory.length == 0">
+        <div class="card-header">
+          <span>You dont't have books in this subcategory.</span>
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
+  import BookLight from '~/components/BookLight'
   export default {
+    components: {
+      BookLight,
+    },
     computed: {
       currentValueCategory() {
         return this.$store.getters.categories.find(item => {
@@ -59,11 +56,15 @@
       try {
         await this.$store.dispatch('GET_CATEGORIES')
         await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
-        await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {categoryValue: this.currentValueCategory.id, subcategoryValue: this.currentValueSubcategory.id})
+        await this.$store.dispatch('GET_SUBCATEGORY_VALUE', {
+          categoryValue: this.currentValueCategory.id,
+          subcategoryValue: this.currentValueSubcategory.id
+        })
         await this.$store.dispatch('GET_BOOKS_OF_SUBCATEGORY', this.currentValueSubcategory.id)
       } catch (e) {
         this.$store.commit('ERROR', e)
       }
     }
   }
+
 </script>

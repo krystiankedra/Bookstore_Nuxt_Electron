@@ -1,50 +1,45 @@
 <template>
   <div class="container">
     <div class="mt-5">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Category</a></nuxt-link>
+      <div class="card">
+        <div class="card-header">
+          <h5>Navigation</h5>
+        </div>
+        <div class="card-body">
+          <nuxt-link class="breadcrumb-item" :to="`/books/categories/`"><a>Categories</a></nuxt-link>
           <nuxt-link class="breadcrumb-item active" :to="`/books/categories/${valueOfCategory.alias}`">
             <a>{{valueOfCategory.name}}</a></nuxt-link>
-        </ol>
-      </nav>
+        </div>
+      </div>
     </div>
     <div class="row mt-5">
       <div class="col-md-3">
         <div class="dropdown">
-          <button class="dropbtn btn btn-primary">Subcategory</button>
+          <button class="dropbtn btn btn-outline-primary">Subcategory</button>
           <div class="dropdown-content">
-            <nuxt-link :to="`/books/categories/${valueOfCategory.alias}/${subcategory.alias}`" v-for="subcategory in subcategories"
-              :key="subcategory.id" append><a>{{subcategory.name}}</a></nuxt-link>
+            <nuxt-link tag="button" class="btn btn-outline-success buttonubcategories" :to="`/books/categories/${valueOfCategory.alias}/${subcategory.alias}`"
+              v-for="subcategory in subcategories" :key="subcategory.id" append>{{subcategory.name}}</nuxt-link>
           </div>
         </div>
       </div>
-      <div class="col-md-9">
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(book,index) in booksOfCategory" :key="book.id">
-              <th scope="row">{{index+1}}</th>
-              <td>{{book.title}}</td>
-              <td>{{book.description}}</td>
-              <nuxt-link tag="td" :to="`/books/${book.id}`" ><a>View Details</a></nuxt-link>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col-md-9 col-sm-12">
+        <BookLight v-for="book in booksOfCategory" :book="book" :index="index" :key="book.id" v-if="booksOfCategory.length > 0"></BookLight>
+        <div class="card" v-if="booksOfCategory.length == 0">
+          <div class="card-header text-center">
+            <span>You dont't have books in this category.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import BookLight from '~/components/BookLight'
   export default {
+    components: {
+      BookLight,
+    },
     computed: {
       currentValueCategory() {
         return this.$store.getters.categories.find(item => {
@@ -57,7 +52,7 @@
         return this.$store.getters.subcategories ? this.$store.getters.subcategories : []
       },
       booksOfCategory() {
-        return this.$store.getters.booksOfCategory ? this.$store.getters.booksOfCategory  : []
+        return this.$store.getters.booksOfCategory ? this.$store.getters.booksOfCategory : []
       },
       valueOfCategory() {
         return this.$store.getters.valueOfCategory ? this.$store.getters.valueOfCategory : []
@@ -74,13 +69,18 @@
       }
     },
   }
+
 </script>
 
 <style scoped>
   @media only screen and (max-width:768px) {
     .dropdown {
-      margin-bottom:30px;
+      margin-bottom: 30px;
     }
+  }
+
+  .buttonubcategories {
+    min-width: 280px;
   }
 
   .dropbtn {
@@ -112,13 +112,12 @@
     font-weight: bold;
   }
 
-  .dropdown-content a:hover {
-    color: red;
-    background-color: blanchedalmond;
-  }
 
-  .dropdown:hover .dropdown-content {
+
+  .dropdown:hover .dropdown-content,
+  .dropdown:active .dropdown-content {
     display: block;
     opacity: .9;
   }
+
 </style>

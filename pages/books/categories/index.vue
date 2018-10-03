@@ -1,20 +1,33 @@
 <template>
-    <div class="container mt-5">
-      <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
-         <nuxt-link :to="`/books/categories/`"><a>Categories</a></nuxt-link> 
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-header">
+        <h5>Navigation</h5>
+      </div>
+      <div class="card-body">
+        <li class="breadcrumb-item active resetLi" aria-current="page">
+          <nuxt-link :to="`/books/categories/`"><a>Categories</a></nuxt-link>
         </li>
-      </ol>
-    </nav>
-    <div class="alert alert-danger">
-      <h4 class="alert-heading">Category of Books</h4>
-      <p>Select one of below categories. Use breadcrumbs to navigate beetwen categories or subcategories.</p>
+      </div>
     </div>
-    <div class="text-center">
-      <nuxt-link :to="`/books/categories/${category.alias}`" v-for="category in categories" :key="category.id"><a class="btn btn-primary">{{category.name}}</a></nuxt-link>
+    <div class="card mt-5">
+      <div class="card-header">
+        <h4 class="alert-heading">Categories of Books</h4>
+      </div>
+      <div class="card-body">
+        <hr>
+        <p class="mb-0">Select one of below categories. Use breadcrumbs to navigate beetwen categories or
+          subcategories.</p>
+        <hr>
+      </div>
+      <div class="card-footer text-center">
+        <div class="text-center">
+          <nuxt-link tag="button" class="btn btn-outline-primary" :to="`/books/categories/${category.alias}`" v-for="category in categories"
+            :key="category.id">{{category.name}}</nuxt-link>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -32,16 +45,16 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
-  a .btn {
-    margin: 5px;
-    color: white;
+  .resetLi {
+    list-style: none;
   }
 
-  a:hover .btn {
-    color: white
+  .btn {
+    margin: 5px;
   }
 
   @media only screen and (max-width:768px) {
@@ -51,4 +64,5 @@
       width: 100%;
     }
   }
+
 </style>

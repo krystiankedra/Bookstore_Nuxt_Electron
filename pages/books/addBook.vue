@@ -11,19 +11,19 @@
     <div class="form-group row">
       <label for="category" class="col-sm-2 col-form-label"><strong>New Category</strong></label>
       <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
-        <option disabled value="">Please select category</option>
+        <option disabled value="">Please Select Category</option>
         <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
       </select>
     </div>
     <div class="form-group row" v-if="category">
       <label for="subcategory" class="col-sm-2 col-form-label"><strong>New Subcategory</strong></label>
       <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
-        <option disabled value="">Please select subcategory</option>
+        <option disabled value="">Please Select Subcategory</option>
         <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
       </select>
     </div>
     <div class="row justify-content-center">
-      <button class="btn btn-success" @click="addBook">Add Book <i class="fas fa-plus-circle"></i></button>
+      <button class="btn btn-outline-success" @click="addBook">Add Book <i class="fas fa-plus-circle"></i></button>
     </div>
     <div class="mt-5">
       <div class="alert alert-success col-md-5 float-left text-center" v-if="title.length > 0">
@@ -88,4 +88,5 @@
       }
     }
   }
+
 </script>

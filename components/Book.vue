@@ -1,32 +1,48 @@
 <template>
   <div>
     <div class="card mt-5 flex-fill">
-      <div class="card-body">
-        <div class="text-center">
-          <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)" class="font-size-checkbox">
+      <div class="card-header">
+        <div class="container">
+          <div class="float-left">
+            <h6 class="card-title"><strong>{{book.title}}</strong></h6>
+          </div>
+          <div class="float-right">
+            <input type="checkbox" v-model="checkBook" @input="selectedBook(book.id)" class="font-size-checkbox">
+          </div>
         </div>
-        <h5 class="card-title text-center"><strong>{{book.title}}</strong></h5>
-        <p class="text-justify"><strong>Description: </strong>{{book.description.slice(0,70) + '...'}}</p>
-        <p><strong>Category: </strong>{{categoryValue ? categoryValue.name : 'No Category yet!'}}</p>
-        <nuxt-link :to="`/books/${book.id}`">
-          <p class="text-center"><img class="img-fluid" :src="bookPhoto" alt="Click here to more info about book"></p>
-        </nuxt-link>
-        <star-rating v-if="rate" v-model="average" :increment="0.01" :border-width="3" :star-size="25" :read-only="true"></star-rating>
-        <button class="btn btn-danger float-right" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
-        <button class="btn btn-success float-left" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i>
-        </button>
+      </div>
+      <div class="card-body">
+        <p class="text-justify"><strong>Description: </strong>{{book.description.slice(0,100) + '...'}}</p>
+        <p><strong>Category: </strong>{{categoryValue ? categoryValue.name : 'No Category Selected!'}}</p>
+        <div class="form-group" v-if="rate">
+          <strong>Rate:</strong>
+          <star-rating v-model="average" :increment="0.01" :border-width="3" :star-size="25" :read-only="true"></star-rating>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-md-4">
+            <nuxt-link tag="button" class="btn btn-outline-primary" :to="`/books/${book.id}`">Details <i class="fas fa-info"></i></nuxt-link>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-danger float-right" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-outline-success float-left" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
+          </div>
+        </div>
       </div>
       <div v-if="showEditBook">
         <div class="container">
           <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
             <div class="myModalContent">
-              <span class="close-button" @click="showEditBook = !showEditBook"><i class="fas fa-times"></i></span>
+              <span class="close-button" @click="closeModal()"><i class="fas fa-times"></i></span>
               <h3>Modify Book</h3>
               <label class="label-margin-top"><strong>Title:</strong></label>
-              <textarea class="form-control text-justify" v-model="book.title" rows="2"></textarea>
+              <textarea class="form-control text-justify" v-model="newTitle" :placeholder="book.title" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
-              <textarea class="form-control text-justify" v-model="book.description" rows="4" cols="5"></textarea>
-              <button class="btn btn-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
+              <textarea class="form-control text-justify" v-model="newDescription" :placeholder="book.description" rows="4" cols="5"></textarea>
+              <button class="btn btn-outline-primary float-right" @click="modifyBook(book.id, index)">Save <i class="fas fa-cloud"></i></button>
               <label class="label-margin-top"><strong>New Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
               <div class="form-group row  mt-3">
@@ -68,7 +84,9 @@
         average: null,
         newRate: null,
         category: '',
-        subcategory: ''
+        subcategory: '',
+        newTitle: this.book.title,
+        newDescription: this.book.description
       }
     },
     computed: {
@@ -119,14 +137,14 @@
       },
       async modifyBook(bookId, index) {
         try {
-          if (this.book.title.length <= 0 || this.book.description.length <= 0) {
+          if (this.newTitle.length <= 0 || this.newDescription.length <= 0) {
             this.$router.push('books/alertEdit')
           } else {
             await this.$store.dispatch('MODIFY_BOOK', {
               bookId: bookId,
               index: index,
-              title: this.book.title,
-              description: this.book.description,
+              title: this.newTitle,
+              description: this.newDescription,
               rate: this.newRate,
               category: this.category,
               subcategory: this.subcategory
@@ -144,6 +162,11 @@
         } catch (e) {
           this.$store.commit('ERROR', e)
         }
+      },
+      closeModal() {
+        this.newTitle = this.book.title
+        this.newDescription = this.book.description
+        this.showEditBook = !this.showEditBook
       }
     },
     watch: {
@@ -152,6 +175,7 @@
       }
     }
   }
+
 </script>
 
 <style scoped>
@@ -237,22 +261,29 @@
     border: 1px solid blanchedalmond;
   }
 
-    @media only screen and (max-width:768px) {
-      .btn {
-        width: 100%;
-      }
-      .myModalContent {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 1rem 1.5rem;
-        width: 100%;
-        border-radius: 0.5rem;
-      }
-      .close-button {
-        margin-top:5px;
-      }
+  .starRating {
+    margin-bottom: 10px;
+  }
+
+  @media only screen and (max-width:768px) {
+    .btn {
+      width: 100%;
     }
+
+    .myModalContent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 1rem 1.5rem;
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .close-button {
+      margin-top: 5px;
+    }
+  }
+
 </style>

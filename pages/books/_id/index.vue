@@ -17,6 +17,7 @@
         <button class="btn btn-outline-success float-right" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
       </div>
     </div>
+    <transition name="slide" mode="out-in">
     <div v-if="showEditBook">
       <div class="container">
         <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
@@ -52,6 +53,7 @@
         </div>
       </div>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -155,6 +157,26 @@
 </script>
 
 <style scoped>
+   .slide-enter-active {
+    animation: slide-in .5s ease-out forwards;
+  }
+  .slide-leave-active {
+  animation: slide-out .5s ease-out forwards;
+  }
+  @keyframes slide-in {
+    from {
+      opacity:0;
+    } to {
+      opacity: 1;
+    }
+  }
+  @keyframes slide-out {
+    from {
+      opacity: 1;
+    } to {
+      opacity: 0;
+    }
+  }
   .font-size-checkbox {
     width: 20px;
     height: 20px;

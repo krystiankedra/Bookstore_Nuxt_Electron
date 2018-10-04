@@ -24,6 +24,7 @@
         <button class="btn btn-outline-danger btn-margin" @click="deleteBook(book.id)">Delete <i class="fas fa-trash-alt"></i></button>
         <button class="btn btn-outline-success btn-margin" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
       </div>
+      <transition name="slide" mode="out-in">
       <div v-if="showEditBook">
         <div class="container">
           <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
@@ -58,6 +59,7 @@
           </div>
         </div>
       </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -247,6 +249,31 @@
 
   .starRating {
     margin-bottom: 10px;
+  }
+
+  .slide-enter-active {
+      animation: slide-in .2s;
+  }
+  .slide-leave-active {
+    animation: slide-out .2s;
+  }
+  @keyframes slide-in {
+    from {
+      opacity:0;
+      z-index: 0;
+    } to {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+  @keyframes slide-out {
+    from {
+      opacity: 1;
+      z-index: 1;
+    } to {
+      opacity: 0;
+      z-index: 0;
+    }
   }
 
   @media only screen and (max-width:768px) {

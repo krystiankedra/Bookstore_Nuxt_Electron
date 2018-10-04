@@ -64,12 +64,12 @@
         await this.$store.dispatch('GET_SUBCATEGORIES', this.currentValueCategory.id)
         await this.$store.dispatch('GET_BOOKS_OF_CATEGORY', this.currentValueCategory.id)
         await this.$store.dispatch('GET_CATEGORY_VALUE', this.currentValueCategory)
+        await this.$store.dispatch('GET_RATES')
       } catch (e) {
         this.$store.commit('ERROR', e)
       }
     },
   }
-
 </script>
 
 <style scoped>
@@ -112,12 +112,9 @@
     font-weight: bold;
   }
 
-
-
   .dropdown:hover .dropdown-content,
   .dropdown:active .dropdown-content {
     display: block;
     opacity: .9;
   }
-
 </style>

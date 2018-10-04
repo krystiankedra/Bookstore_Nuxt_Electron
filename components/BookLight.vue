@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="card mt-5 flex-fill">
       <div class="card-header">
         <div class="container">
@@ -10,9 +10,8 @@
       </div>
       <div class="card-body">
         <p class="text-justify"><strong>Description: </strong>{{book.description}}</p>
-        <div class="text-center">
-          <nuxt-link tag="button" class="btn btn-outline-primary col-sm-12 col-md-5 col-lg-3" :to="`/books/${book.id}`">Details <i class="fas fa-info"></i></nuxt-link>
-        </div>
+        <nuxt-link tag="button" class="btn btn-outline-primary btn-margin col-md-3 col-sm-12" :to="`/books/${book.id}`">Details
+          <i class="fas fa-info"></i></nuxt-link>
       </div>
     </div>
   </div>

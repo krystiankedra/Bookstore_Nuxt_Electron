@@ -21,7 +21,7 @@
       </div>
       <div class="card-footer text-center">
         <nuxt-link tag="button" class="btn btn-outline-primary btn-margin" :to="`/books/${book.id}`">Details <i class="fas fa-info"></i></nuxt-link>
-        <button class="btn btn-outline-danger btn-margin" @click="deleteBook(book.id, index)">Delete <i class="fas fa-trash-alt"></i></button>
+        <button class="btn btn-outline-danger btn-margin" @click="deleteBook(book.id)">Delete <i class="fas fa-trash-alt"></i></button>
         <button class="btn btn-outline-success btn-margin" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
       </div>
       <div v-if="showEditBook">
@@ -104,11 +104,10 @@
     },
     props: ['book', 'index', 'checkMaster'],
     methods: {
-      async deleteBook(bookId, index) {
+      async deleteBook(bookId) {
         try {
           await this.$store.dispatch('DELETE_BOOK', {
             bookId: bookId,
-            index: index
           })
         } catch (e) {
           this.$store.commit('ERROR', e)
@@ -166,7 +165,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -271,5 +269,4 @@
       margin-top: 5px;
     }
   }
-
 </style>

@@ -6,16 +6,15 @@
       </div>
       <div class="card-body">
         <p class="text-justify mt-3"><strong>Description: </strong>{{valueOfBook.description}}</p>
-        <p class="text-justify mt-3"><strong>Category: </strong>{{valueOfCategory.name}}</p>
-        <p class="text-justify mt-3"><strong>Subcategory: </strong>{{valueOfSubcategory.name}}</p>
-        <strong>Rate:</strong>
+        <p v-if="valueOfBook.category != null" class="text-justify mt-3"><strong>Category: </strong>{{valueOfCategory.name}}</p>
+        <p v-if="valueOfBook.subcategory != null" class="text-justify mt-3"><strong>Subcategory: </strong>{{valueOfSubcategory.name}}</p>
+        <strong v-if="rate">Rate:</strong>
         <star-rating v-if="rate" v-model="average" :increment="0.01" :border-width="3" :star-size="25" :read-only="true"></star-rating>
         <nuxt-link tag="button" class="btn btn-outline-danger float-right" :to="`/books`">Back to book list <i class="fas fa-sign-out-alt"></i></nuxt-link>
       </div>
       <div class="card-footer text-center">
         <button class="btn btn-outline-danger float-left" @click="deleteBook">Delete <i class="fas fa-trash-alt"></i></button>
-        <button class="btn btn-outline-success float-right" @click="showEditBook = !showEditBook">Edit <i
-            class="fas fa-user-edit"></i></button>
+        <button class="btn btn-outline-success float-right" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
       </div>
     </div>
     <div v-if="showEditBook">
@@ -89,10 +88,10 @@
         })
       },
       categories() {
-        return this.$store.getters.categories
+        return this.$store.getters.categories ? this.$store.getters.categories : []
       },
       subcategories() {
-        return this.$store.getters.subcategories
+        return this.$store.getters.subcategories ? this.$store.getters.subcategories : []
       }
     },
     async mounted() {
@@ -153,12 +152,9 @@
       },
     }
   }
-
 </script>
 
 <style scoped>
-
-
   .font-size-checkbox {
     width: 20px;
     height: 20px;
@@ -256,5 +252,4 @@
       margin-top: 5px;
     }
   }
-
 </style>

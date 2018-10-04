@@ -45,7 +45,6 @@
       }
     }
   }
-
 </script>
 
 <style scoped>
@@ -64,5 +63,4 @@
       width: 100%;
     }
   }
-
 </style>

@@ -65,7 +65,7 @@
             this.$set(newBook, 'category', this.category)
             this.$set(newBook, 'subcategory', this.subcategory)
             await this.$store.dispatch('SEND_BOOK', newBook)
-            this.$router.push('/books')
+            await this.$router.push('/books')
           }
         } catch (e) {
           this.$store.commit('ERROR', e)
@@ -88,5 +88,4 @@
       }
     }
   }
-
 </script>

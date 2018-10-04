@@ -60,10 +60,11 @@ export default {
     },
     async 'DELETE_SELECTED'({commit}) {
       try {
-        for (let i in this.state.selectedBooks) {
+        for (let i=0; i<this.state.selectedBooks.length; ++i) {
           await Vue.http.delete('http://bootcamp.opole.pl/books/delete-book/' + this.state.selectedBooks[i].bookId + '/87f4')
           commit('DELETE_BOOK', this.state.selectedBooks[i])
         }
+        Vue.set(this.state, 'selectedBooks', [])
         const response = await Vue.http.get('http://bootcamp.opole.pl/books/my-books/87f4')
         const books = response.data.books
         commit('SET_BOOKS', books)

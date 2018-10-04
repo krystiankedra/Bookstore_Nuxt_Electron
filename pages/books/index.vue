@@ -76,7 +76,7 @@
       },
       async deleteSelected() {
         try {
-          if (this.$store.state.selectedBooks.length == 0) {
+          if (this.$store.getters.selectedBooks.length == 0) {
             this.$router.push('/books/alertSelect')
             return false;
           } else {
@@ -97,7 +97,6 @@
       }
     },
   }
-
 </script>
 
 <style scoped>
@@ -118,5 +117,4 @@
       height: 40px;
     }
   }
-
 </style>

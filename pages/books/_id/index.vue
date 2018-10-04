@@ -18,41 +18,41 @@
       </div>
     </div>
     <transition name="slide" mode="out-in">
-    <div v-if="showEditBook">
-      <div class="container">
-        <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
-          <div class="myModalContent">
-            <span class="close-button" @click="closeModal()"><i class="fas fa-times"></i></span>
-            <h3>Modify Book</h3>
-            <label class="label-margin-top"><strong>Title:</strong></label>
-            <textarea class="form-control text-justify" v-model="valueOfBook.title" :placeholder="valueOfBook.title"
-              rows="2"></textarea>
-            <label class="label-margin-top"><strong>Description:</strong></label>
-            <textarea class="form-control text-justify" v-model="valueOfBook.description" :placeholder="valueOfBook.description"
-              rows="4" cols="5"></textarea>
-            <button class="btn btn-outline-primary float-right" @click="modifyBook(valueOfBook.id)">Save <i class="fas fa-cloud"></i></button>
-            <label class="label-margin-top"><strong>Rate:</strong></label>
-            <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
-            <div class="form-group row  mt-3">
-              <label for="category" class="col-sm-3 col-form-label"><strong>Category:</strong></label>
-              <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
-                <option disabled value="">Please select category</option>
-                <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
-                <option value="0">Clear category</option>
-              </select>
-            </div>
-            <div class="form-group row">
-              <label for="subcategory" class="col-sm-3 col-form-label"><strong>Subcategory:</strong></label>
-              <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
-                <option disabled value="">Please select subcategory</option>
-                <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
-                <option value="0">Clear subcategory</option>
-              </select>
+      <div v-if="showEditBook">
+        <div class="container">
+          <div class="ownModal" :class="[showEditBook ? 'showMyModal' : '']">
+            <div class="myModalContent">
+              <span class="close-button" @click="closeModal()"><i class="fas fa-times"></i></span>
+              <h3>Modify Book</h3>
+              <label class="label-margin-top"><strong>Title:</strong></label>
+              <textarea class="form-control text-justify" v-model="valueOfBook.title" :placeholder="valueOfBook.title"
+                rows="2"></textarea>
+              <label class="label-margin-top"><strong>Description:</strong></label>
+              <textarea class="form-control text-justify" v-model="valueOfBook.description" :placeholder="valueOfBook.description"
+                rows="4" cols="5"></textarea>
+              <button class="btn btn-outline-primary float-right" @click="modifyBook(valueOfBook.id)">Save <i class="fas fa-cloud"></i></button>
+              <label class="label-margin-top"><strong>Rate:</strong></label>
+              <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
+              <div class="form-group row  mt-3">
+                <label for="category" class="col-sm-3 col-form-label"><strong>Category:</strong></label>
+                <select v-model="category" class="col-sm-8 col-sm-offset-2 form-control" @change="getSubcategories(category)">
+                  <option disabled value="">Please select category</option>
+                  <option v-for="(category,index) in categories" :key="index" :value="category.id">{{category.name}}</option>
+                  <option value="0">Clear category</option>
+                </select>
+              </div>
+              <div class="form-group row">
+                <label for="subcategory" class="col-sm-3 col-form-label"><strong>Subcategory:</strong></label>
+                <select v-model="subcategory" class="col-sm-8 col-sm-offset-2 form-control">
+                  <option disabled value="">Please select subcategory</option>
+                  <option v-for="(subcategory,index) in subcategories" :key="index" :value="subcategory.id">{{subcategory.name}}</option>
+                  <option value="0">Clear subcategory</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </transition>
   </div>
 </template>
@@ -154,29 +154,38 @@
       },
     }
   }
+
 </script>
 
 <style scoped>
-   .slide-enter-active {
+  .slide-enter-active {
     animation: slide-in .5s ease-out forwards;
   }
+
   .slide-leave-active {
-  animation: slide-out .5s ease-out forwards;
+    animation: slide-out .5s ease-out forwards;
   }
+
   @keyframes slide-in {
     from {
-      opacity:0;
-    } to {
+      opacity: 0;
+    }
+
+    to {
       opacity: 1;
     }
   }
+
   @keyframes slide-out {
     from {
       opacity: 1;
-    } to {
+    }
+
+    to {
       opacity: 0;
     }
   }
+
   .font-size-checkbox {
     width: 20px;
     height: 20px;

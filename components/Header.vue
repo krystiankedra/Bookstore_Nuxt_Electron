@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <label for="show-menu" class="show-menu btn btn-outline-primary">Show Menu</label>
+    <label for="show-menu" class="show-menu btn btn-outline-primary">&#9776;</label>
     <input type="checkbox" id="show-menu" role="button">
     <ul id="menu"  class="nav nav-tabs justify-content-center text-center">
       <nuxt-link tag="li" to="/" class="nav-link col-md-2 col-sm-12 text-center" active-class="active" exact><a>Home</a></nuxt-link>

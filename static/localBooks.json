@@ -29,6 +29,66 @@
       "description": "Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge. Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge.",
       "category": "1",
       "subcategory": "20"
+    },
+    {
+      "title": "Lolita by Vladimir Nabokov",
+      "description": "The book is internationally famous for its innovative style and infamous for its controversial subject: the protagonist and unreliable narrator, middle aged Humbert Humbert, becomes obsessed.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Crime and Punishment by Fyodor Dostoyevsky",
+      "description": "It is a murder story, told from a murder;s point of view, that implicates even the most innocent reader in its enormities. It is a cat-and-mouse game between a tormented young killer and a cheerful.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": " Alice's Adventures in Wonderland by Lewis Carroll",
+      "description": "In 1862 Charles Lutwidge Dodgson, a shy Oxford mathematician with a stammer, created a story about a little girl tumbling down a rabbit hole. Thus began the immortal adventures of Alice, perhaps.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Pride and Prejudice by Jane Austen",
+      "description": "The book is narrated in free indirect speech following the main character Elizabeth Bennet as she deals with matters of upbringing, marriage, moral rightness and education in her aristocratic socie.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "To the Lighthouse by Virginia Woolf",
+      "description": "A landmark novel of high modernism, the text, centering on the Ramsay family and their visits to the Isle of Skye in Scotland between 1910 and 1920, skillfully manipulates temporality and psycholog.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Heart of Darkness by Joseph Conrad",
+      "description": "The story details an incident when Marlow, an Englishman, took a foreign assignment from a Belgian trading company as a ferry-boat captain in Africa. Although Conrad does not specify the name.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Anna Karenina by Leo Tolstoy",
+      "description": "Anna Karenina tells of the doomed love affair between the sensuous and rebellious Anna and the dashing officer, Count Vronsky. Tragedy unfolds as Anna rejects her passionless marriage and must end.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Nineteen Eighty Four by George Orwell",
+      "description": "Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge. Like other books in this series, You Don’t Know JS: Async & Performance dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": "Great Expectations by Charles Dickens",
+      "description": "Great Expectations is written in the genre of bildungsroman or the style of book that follows the story of a man or woman in their quest for maturity, usually starting from childhood and ending.",
+      "category": "1",
+      "subcategory": "20"
+    },
+    {
+      "title": " One Thousand and One Nights by India",
+      "description": "One Thousand and One Nights is a collection of Middle Eastern and South Asian stories and folk tales compiled in Arabic during the Islamic Golden Age. It is often known in English as the Arabian Nicea.",
+      "category": "1",
+      "subcategory": "20"
     }
   ]
 }

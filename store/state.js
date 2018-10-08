@@ -9,5 +9,7 @@ export default {
     booksOfSubcategory:[],
     valueOfSubcategory: [],
     error: [],
-    valueOfBook: []
+    valueOfBook: [],
+    token: '',
+    loginStatus: false,
   }

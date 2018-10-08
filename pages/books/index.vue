@@ -26,6 +26,12 @@
         <button class="btn btn-outline-primary" @click="addJson">Import From File <i class="fas fa-file"></i></button>
       </div>
     </div>
+    <div class="row mt-5">
+      <div class="btn-group col-sm-12 col-md-5">
+        <button class="btn btn-outline-primary" @click="prevPage"><i class="fas fa-arrow-left"></i> Previous</button>
+        <button class="btn btn-outline-primary" @click="nextPage">Next <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
     <div class="row">
       <Book class="col-md-6 d-flex" v-for="(book,index) in filteredBooks" :key="book.id" :index="index" :book="book"
         :checkMaster="checkMaster"></Book>
@@ -51,17 +57,24 @@
         sortByTitle: false,
         sortByDesc: false,
         checkMaster: false,
+        pageNumber: 0,
+        size: 6
       }
     },
     computed: {
       filteredBooks() {
-        return this.$store.getters.books.filter(element => {
+        return this.paginatedData.filter(element => {
           return (element.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ||
             element.description.toLowerCase().indexOf(this.search.toLowerCase()) > -1);
         });
       },
       amountSelectedBooks() {
         return this.$store.getters.selectedBooks.length
+      },
+      paginatedData() {
+        const start = this.pageNumber * this.size
+        const end = start + this.size;
+        return this.$store.getters.books.slice(start, end);
       }
     },
     components: {
@@ -94,9 +107,16 @@
         } catch (e) {
           this.$store.commit('ERROR', e)
         }
+      },
+      nextPage() {
+        this.pageNumber++;
+      },
+      prevPage() {
+        this.pageNumber--;
       }
     },
   }
+
 </script>
 
 <style scoped>
@@ -117,4 +137,5 @@
       height: 40px;
     }
   }
+
 </style>

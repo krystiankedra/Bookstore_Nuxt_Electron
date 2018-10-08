@@ -96,4 +96,10 @@ export default {
       }
     })
   },
+  'SET_TOKEN': (state, payload) => {
+    Vue.set(state, 'token', payload)
+  },
+  'SET_LOGIN_STATUS': (state, payload) => {
+    Vue.set(state, 'loginStatus', payload)
+  }
 }

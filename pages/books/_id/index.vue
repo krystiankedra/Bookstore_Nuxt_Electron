@@ -14,7 +14,7 @@
       </div>
       <div class="card-footer text-center">
         <button class="btn btn-outline-danger float-left" @click="deleteBook">Delete <i class="fas fa-trash-alt"></i></button>
-        <button class="btn btn-outline-success float-right" @click="showEditBook = !showEditBook">Edit <i class="fas fa-user-edit"></i></button>
+        <button class="btn btn-outline-success float-right" @click="openModal">Edit <i class="fas fa-user-edit"></i></button>
       </div>
     </div>
     <transition name="slide" mode="out-in">
@@ -25,11 +25,9 @@
               <span class="close-button" @click="closeModal()"><i class="fas fa-times"></i></span>
               <h3>Modify Book</h3>
               <label class="label-margin-top"><strong>Title:</strong></label>
-              <textarea class="form-control text-justify" v-model="valueOfBook.title" :placeholder="valueOfBook.title"
-                rows="2"></textarea>
+              <textarea class="form-control text-justify" v-model="newTitle" rows="2"></textarea>
               <label class="label-margin-top"><strong>Description:</strong></label>
-              <textarea class="form-control text-justify" v-model="valueOfBook.description" :placeholder="valueOfBook.description"
-                rows="4" cols="5"></textarea>
+              <textarea class="form-control text-justify" v-model="newDescription" rows="4" cols="5"></textarea>
               <button class="btn btn-outline-primary float-right" @click="modifyBook(valueOfBook.id)">Save <i class="fas fa-cloud"></i></button>
               <label class="label-margin-top"><strong>Rate:</strong></label>
               <star-rating v-model="newRate" :increment="0.5" :border-width="3" :star-size="35"></star-rating>
@@ -70,6 +68,8 @@
         newRate: null,
         category: '',
         subcategory: '',
+        newTitle: '',
+        newDescription: '',
       }
     },
     computed: {
@@ -111,6 +111,11 @@
       }
     },
     methods: {
+      openModal() {
+        this.newTitle = this.valueOfBook.title
+        this.newDescription = this.valueOfBook.description
+        this.showEditBook = !this.showEditBook
+      },
       async deleteBook() {
         try {
           await this.$store.dispatch('DELETE_BOOK', {
@@ -138,8 +143,8 @@
           } else {
             await this.$store.dispatch('MODIFY_BOOK_LIGHT', {
               bookId: bookId,
-              title: this.valueOfBook.title,
-              description: this.valueOfBook.description,
+              title: this.newTitle,
+              description: this.newDescription,
               rate: this.newRate,
               category: this.category,
               subcategory: this.subcategory

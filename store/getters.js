@@ -28,5 +28,11 @@ export default {
     },
     selectedBooks: state => {
       return state.selectedBooks
+    },
+    token: state => {
+      return state.token
+    },
+    loginStatus: state => {
+      return state.loginStatus
     }
   }
